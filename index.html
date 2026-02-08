@@ -1,70 +1,1250 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon | My Professional Site</title>
+    <meta name="description" content="松井真也（Shinya Matsui）- 情報処理安全確保支援士。DXとサイバーセキュリティを通じて日本の存在感を高める。">
+    <title>松井真也 | Shinya Matsui - Information Security Professional</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <style>
+        /* ========================================
+           CSS Variables & Reset
+        ======================================== */
         :root {
-            --primary: #0070f3;
-            --background: #000000;
-            --text: #ffffff;
+            --navy: #1e293b;
+            --navy-deep: #0f172a;
+            --sky: #0ea5e9;
+            --sky-light: #e0f2fe;
+            --sky-glow: rgba(14, 165, 233, 0.15);
+            --amber: #f59e0b;
+            --amber-light: #fef3c7;
+            --bg: #fafaf9;
+            --bg-warm: #f5f5f0;
+            --card: #ffffff;
+            --text: #334155;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --border-light: #f1f5f9;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 20px rgba(0,0,0,0.06);
+            --shadow-lg: 0 10px 40px rgba(0,0,0,0.08);
+            --shadow-glow: 0 0 40px rgba(14, 165, 233, 0.12);
+            --radius: 16px;
+            --radius-sm: 8px;
+            --transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            --font-display: 'DM Serif Display', Georgia, serif;
+            --font-body: 'Outfit', 'Noto Sans JP', sans-serif;
+            --font-jp: 'Noto Sans JP', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         body {
-            margin: 0;
-            padding: 0;
-            background-color: var(--background);
+            font-family: var(--font-body);
             color: var(--text);
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
+            background: var(--bg);
+            line-height: 1.7;
+            overflow-x: hidden;
         }
 
+        /* ========================================
+           Background Pattern
+        ======================================== */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(circle at 1px 1px, rgba(14, 165, 233, 0.03) 1px, transparent 0);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ========================================
+           Navigation
+        ======================================== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        nav.scrolled {
+            background: rgba(250, 250, 249, 0.9);
+            border-bottom: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--navy-deep);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-logo span {
+            color: var(--sky);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--sky);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--navy);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ========================================
+           Layout
+        ======================================== */
         .container {
-            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
             z-index: 1;
         }
 
-        h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(to right, #fff, #888);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -0.05em;
+        section {
+            padding: 120px 0;
+            position: relative;
         }
 
-        p {
-            color: #888;
-            font-size: 1.2rem;
+        /* ========================================
+           Section Title System
+        ======================================== */
+        .section-header {
+            margin-bottom: 4rem;
+            position: relative;
         }
 
-        .glow {
+        .section-number {
+            font-family: var(--font-display);
+            font-size: 8rem;
+            color: var(--sky-light);
+            line-height: 1;
             position: absolute;
-            width: 40vw;
-            height: 40vw;
-            background: radial-gradient(circle, rgba(0, 112, 243, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            top: -2rem;
+            left: -1rem;
             z-index: 0;
-            pointer-events: none;
+            user-select: none;
+        }
+
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--sky);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.75rem;
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 2.75rem;
+            color: var(--navy-deep);
+            line-height: 1.2;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-subtitle {
+            font-family: var(--font-jp);
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-top: 1rem;
+            max-width: 600px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ========================================
+           Hero Section
+        ======================================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            background: linear-gradient(180deg, var(--bg) 0%, var(--bg-warm) 100%);
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--sky-glow);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            color: var(--sky);
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            margin-bottom: 2rem;
+        }
+
+        .hero-badge i {
+            font-size: 0.65rem;
+        }
+
+        .hero-name-en {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            color: var(--navy-deep);
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-name-jp {
+            font-family: var(--font-jp);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title-text {
+            font-family: var(--font-jp);
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .hero-title img {
+            height: 2em;
+        }
+
+        .hero-mission {
+            font-family: var(--font-jp);
+            font-size: 1.15rem;
+            color: var(--text-light);
+            line-height: 1.8;
+            max-width: 520px;
+            margin-bottom: 2.5rem;
+            padding-left: 1.25rem;
+            border-left: 3px solid var(--sky);
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--navy-deep);
+            color: white;
+            padding: 0.9rem 2rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .hero-cta:hover {
+            background: var(--sky);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+        }
+
+        .hero-image-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 200px;
+            height: 200px;
+            border: 2px solid var(--sky-light);
+            border-radius: 24px;
+            z-index: 0;
+        }
+
+        .hero-image-wrapper::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: -15px;
+            width: 120px;
+            height: 120px;
+            background: var(--sky-glow);
+            border-radius: 20px;
+            z-index: 0;
+        }
+
+        .hero-image {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 420px;
+            border-radius: 24px;
+            box-shadow: var(--shadow-lg);
+            display: block;
+        }
+
+        /* ========================================
+           Values Section
+        ======================================== */
+        #values {
+            background: var(--card);
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .value-card {
+            padding: 2.5rem 2rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            background: var(--bg);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--sky);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: var(--transition);
+        }
+
+        .value-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--sky-light);
+        }
+
+        .value-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .value-icon {
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--sky-glow);
+            color: var(--sky);
+            border-radius: 14px;
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .value-card h3 {
+            font-family: var(--font-jp);
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--navy-deep);
+            margin-bottom: 0.75rem;
+        }
+
+        .value-card p {
+            font-family: var(--font-jp);
+            font-size: 0.95rem;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* ========================================
+           Expertise Section
+        ======================================== */
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .expertise-card {
+            display: flex;
+            gap: 1.25rem;
+            padding: 2rem;
+            border-radius: var(--radius);
+            background: var(--card);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .expertise-card:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--sky-light);
+        }
+
+        .expertise-icon {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--navy-deep);
+            color: var(--sky);
+            border-radius: 12px;
+            font-size: 1.1rem;
+        }
+
+        .expertise-card h3 {
+            font-family: var(--font-jp);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--navy-deep);
+            margin-bottom: 0.5rem;
+        }
+
+        .expertise-card p {
+            font-family: var(--font-jp);
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* ========================================
+           Certifications Section
+        ======================================== */
+        #certifications {
+            background: var(--card);
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+
+        .cert-category h3 {
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--sky);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .cert-category h3::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .cert-item {
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-light);
+            transition: var(--transition);
+        }
+
+        .cert-item:last-child {
+            border-bottom: none;
+        }
+
+        .cert-item:hover {
+            padding-left: 0.5rem;
+        }
+
+        .cert-year {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-light);
+            min-width: 4rem;
+            flex-shrink: 0;
+        }
+
+        .cert-name {
+            font-family: var(--font-jp);
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--navy);
+        }
+
+        .cert-highlight {
+            color: var(--navy-deep);
+            font-weight: 700;
+        }
+
+        .cert-highlight .cert-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: var(--amber-light);
+            color: var(--amber);
+            padding: 0.15rem 0.6rem;
+            border-radius: 100px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            font-family: var(--font-mono);
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+
+        /* ========================================
+           Activities Section
+        ======================================== */
+        .activities-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .activity-card {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 3rem;
+            align-items: center;
+            padding: 2.5rem;
+            border-radius: var(--radius);
+            background: var(--card);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .activity-card:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .activity-card.reverse {
+            direction: rtl;
+        }
+
+        .activity-card.reverse > * {
+            direction: ltr;
+        }
+
+        .activity-image img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .activity-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.35rem 0.85rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            font-family: var(--font-mono);
+            margin-bottom: 1rem;
+        }
+
+        .badge-blue {
+            background: var(--sky-glow);
+            color: var(--sky);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+        }
+
+        .badge-amber {
+            background: var(--amber-light);
+            color: var(--amber);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+
+        .badge-navy {
+            background: rgba(15, 23, 42, 0.06);
+            color: var(--navy);
+            border: 1px solid rgba(15, 23, 42, 0.1);
+        }
+
+        .activity-content h3 {
+            font-family: var(--font-jp);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--navy-deep);
+            margin-bottom: 0.75rem;
+        }
+
+        .activity-content p {
+            font-family: var(--font-jp);
+            font-size: 0.95rem;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* Activity without image */
+        .activity-card.no-image {
+            grid-template-columns: 1fr;
+        }
+
+        .activity-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .activity-list li {
+            font-family: var(--font-jp);
+            font-size: 0.95rem;
+            color: var(--text-light);
+            padding: 0.5rem 0;
+            padding-left: 1.25rem;
+            position: relative;
+        }
+
+        .activity-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 6px;
+            height: 6px;
+            background: var(--sky);
+            border-radius: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* ========================================
+           Contact / Footer
+        ======================================== */
+        .contact-section {
+            background: var(--navy-deep);
+            color: white;
+            text-align: center;
+            padding: 100px 0 60px;
+        }
+
+        .contact-section .section-label {
+            color: rgba(14, 165, 233, 0.8);
+        }
+
+        .contact-section .section-title {
+            color: white;
+        }
+
+        .contact-text {
+            font-family: var(--font-jp);
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 500px;
+            margin: 1.5rem auto 3rem;
+            line-height: 1.8;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.85rem 1.75rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: white;
+        }
+
+        .contact-btn:hover {
+            border-color: var(--sky);
+            background: rgba(14, 165, 233, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .contact-btn.primary {
+            background: var(--sky);
+            border-color: var(--sky);
+        }
+
+        .contact-btn.primary:hover {
+            background: #0284c7;
+            box-shadow: 0 0 30px rgba(14, 165, 233, 0.3);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 2rem;
+            text-align: center;
+        }
+
+        .footer-copy {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.35);
+            font-family: var(--font-mono);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social a {
+            color: rgba(255, 255, 255, 0.35);
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            color: var(--sky);
+        }
+
+        /* ========================================
+           Animations
+        ======================================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* Hero entrance animations */
+        .hero-enter {
+            opacity: 0;
+            transform: translateY(40px);
+            animation: heroEnter 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        @keyframes heroEnter {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-enter-1 { animation-delay: 0.2s; }
+        .hero-enter-2 { animation-delay: 0.4s; }
+        .hero-enter-3 { animation-delay: 0.6s; }
+        .hero-enter-4 { animation-delay: 0.8s; }
+        .hero-enter-5 { animation-delay: 1.0s; }
+
+        /* ========================================
+           Mobile Navigation
+        ======================================== */
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            color: var(--navy);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* ========================================
+           Responsive
+        ======================================== */
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-links.open {
+                display: flex;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: rgba(250, 250, 249, 0.98);
+                backdrop-filter: blur(12px);
+                padding: 1rem 2rem 2rem;
+                gap: 1rem;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+            }
+
+            .hero-name-en {
+                font-size: 2.75rem;
+            }
+
+            .hero-mission {
+                margin: 0 auto 2.5rem;
+                text-align: left;
+            }
+
+            .hero-image-wrapper::before,
+            .hero-image-wrapper::after {
+                display: none;
+            }
+
+            .hero-image img {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .expertise-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cert-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .activity-card {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .activity-card.reverse {
+                direction: ltr;
+            }
+
+            .section-number {
+                font-size: 5rem;
+                top: -1rem;
+                left: -0.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 80px 0;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-name-en {
+                font-size: 2.2rem;
+            }
+
+            .container {
+                padding: 0 1.25rem;
+            }
+
+            .activity-card {
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div class="glow"></div>
-    <div class="container">
-        <h1>Coming Soon</h1>
-        <p>準備中です。新しいウェブサイトにご期待ください。</p>
-    </div>
-</body>
 
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="#" class="nav-logo">S<span>.</span>Matsui</a>
+        <button class="nav-toggle" aria-label="メニュー" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-links">
+            <li><a href="#values">Values</a></li>
+            <li><a href="#expertise">Expertise</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#activities">Activities</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+
+        <!-- ======== Hero Section ======== -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-content">
+                        <div class="hero-badge hero-enter hero-enter-1">
+                            <i class="fas fa-shield-halved"></i>
+                            Registered Information Security Specialist
+                        </div>
+                        <h1 class="hero-name-en hero-enter hero-enter-2">
+                            Shinya<br>Matsui.
+                        </h1>
+                        <p class="hero-name-jp hero-enter hero-enter-3">松井 真也</p>
+                        <div class="hero-title hero-enter hero-enter-3">
+                            <span class="hero-title-text">情報処理安全確保支援士</span>
+                        </div>
+                        <p class="hero-mission hero-enter hero-enter-4">
+                            DXとサイバーセキュリティを通じて<br>日本の存在感を高める
+                        </p>
+                        <a href="#contact" class="hero-cta hero-enter hero-enter-5">
+                            <i class="fas fa-paper-plane"></i>
+                            お問い合わせ
+                        </a>
+                    </div>
+                    <div class="hero-image-wrapper hero-enter hero-enter-4">
+                        <div class="hero-image">
+                            <img src="assets/profile.jpg" alt="松井真也 プロフィール写真">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======== Values Section ======== -->
+        <section id="values">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-number">01</span>
+                    <span class="section-label">// Values</span>
+                    <h2 class="section-title">Three Pillars</h2>
+                    <p class="section-subtitle">私の思考や行動の指針となっている3つの柱です。</p>
+                </div>
+
+                <div class="values-grid">
+                    <div class="value-card reveal reveal-delay-1">
+                        <div class="value-icon">
+                            <i class="fas fa-arrow-trend-up"></i>
+                        </div>
+                        <h3>成長 <span style="font-size: 0.75em; color: var(--text-light); font-weight: 400;">Growth</span></h3>
+                        <p>継続的な学習と自己研鑽。日々楽しく学び、新しいことに挑戦することを通じて成長することを活動の基本としています。</p>
+                    </div>
+                    <div class="value-card reveal reveal-delay-2">
+                        <div class="value-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3>挑戦 <span style="font-size: 0.75em; color: var(--text-light); font-weight: 400;">Challenge</span></h3>
+                        <p>未知の領域や新しいテクノロジー（AI等）への積極的な取り組み。常に新しい領域へ恐れず踏み込みます。</p>
+                    </div>
+                    <div class="value-card reveal reveal-delay-3">
+                        <div class="value-icon">
+                            <i class="fas fa-heart-pulse"></i>
+                        </div>
+                        <h3>健康 <span style="font-size: 0.75em; color: var(--text-light); font-weight: 400;">Health</span></h3>
+                        <p>全ての活動の基盤となる心身のコンディション管理。食事・運動・睡眠を最適化し、高いパフォーマンスを維持します。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======== Expertise Section ======== -->
+        <section id="expertise">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-number">02</span>
+                    <span class="section-label">// Expertise</span>
+                    <h2 class="section-title">Strengths</h2>
+                    <p class="section-subtitle">専門性と強みの領域。</p>
+                </div>
+
+                <div class="expertise-grid">
+                    <div class="expertise-card reveal reveal-delay-1">
+                        <div class="expertise-icon">
+                            <i class="fas fa-shield-halved"></i>
+                        </div>
+                        <div>
+                            <h3>サイバーセキュリティ</h3>
+                            <p>デジタル化推進とセットでのセキュリティ対策支援。組織のDX推進とセキュリティ強化を両立するアプローチを提供します。</p>
+                        </div>
+                    </div>
+                    <div class="expertise-card reveal reveal-delay-2">
+                        <div class="expertise-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div>
+                            <h3>グローバル対応</h3>
+                            <p>国際的な異文化環境での実務遂行。国際機関への出向経験を活かした、グローバル視点でのセキュリティ推進。</p>
+                        </div>
+                    </div>
+                    <div class="expertise-card reveal reveal-delay-3">
+                        <div class="expertise-icon">
+                            <i class="fas fa-chalkboard-user"></i>
+                        </div>
+                        <div>
+                            <h3>教育・啓発</h3>
+                            <p>専門知識を分かりやすく伝える能力。Udemy等のプラットフォームを活用した実践的なセキュリティ教育を展開。</p>
+                        </div>
+                    </div>
+                    <div class="expertise-card reveal reveal-delay-4">
+                        <div class="expertise-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div>
+                            <h3>ドメイン知識</h3>
+                            <p>人事、知的財産管理など、多様なビジネス領域での知見。幅広い業務経験に基づく実践的なアドバイスを提供します。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======== Certifications Section ======== -->
+        <section id="certifications">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-number">03</span>
+                    <span class="section-label">// Certifications</span>
+                    <h2 class="section-title">Credentials</h2>
+                    <p class="section-subtitle">保有資格・スキルの一覧です。</p>
+                </div>
+
+                <div class="cert-grid reveal">
+                    <div class="cert-category">
+                        <h3><i class="fas fa-microchip" style="font-size: 0.9em;"></i> IT・セキュリティ</h3>
+                        <div class="cert-item">
+                            <span class="cert-year">2024〜</span>
+                            <span class="cert-name cert-highlight">
+                                情報処理安全確保支援士
+                                <span class="cert-badge"><i class="fas fa-star" style="font-size: 0.6em;"></i> 現行</span>
+                            </span>
+                        </div>
+                        <div class="cert-item">
+                            <span class="cert-year">2023</span>
+                            <span class="cert-name">応用情報技術者</span>
+                        </div>
+                        <div class="cert-item">
+                            <span class="cert-year">2014</span>
+                            <span class="cert-name">統計検定2級</span>
+                        </div>
+                    </div>
+
+                    <div class="cert-category">
+                        <h3><i class="fas fa-language" style="font-size: 0.9em;"></i> 語学</h3>
+                        <div class="cert-item">
+                            <span class="cert-year">2024</span>
+                            <span class="cert-name cert-highlight">
+                                TOEIC 945点
+                                <span class="cert-badge"><i class="fas fa-star" style="font-size: 0.6em;"></i> 最新</span>
+                            </span>
+                        </div>
+                        <div class="cert-item">
+                            <span class="cert-year">2003</span>
+                            <span class="cert-name">英検1級</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======== Activities Section ======== -->
+        <section id="activities">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-number">04</span>
+                    <span class="section-label">// Activities</span>
+                    <h2 class="section-title">Work & Impact</h2>
+                    <p class="section-subtitle">主要な活動と実績。</p>
+                </div>
+
+                <div class="activities-grid">
+                    <!-- Udemy -->
+                    <div class="activity-card reveal">
+                        <div class="activity-image">
+                            <img src="assets/udemy_course.png" alt="Udemy ランサムウェア対策コース">
+                        </div>
+                        <div class="activity-content">
+                            <span class="activity-badge badge-blue"><i class="fas fa-graduation-cap"></i> Education</span>
+                            <h3>Udemy講師</h3>
+                            <p>「ランサムウェア対策」コースを運営。AIロールプレイなどの最新技術を導入し、単なる知識の習得を超えた体験型学習を提供しています。すべてのコースが<a href="https://www.udemy.com/user/song-jing-zhen-ye/" target="_blank" style="color: var(--sky); text-decoration: underline; text-underline-offset: 3px;">Udemyビジネス</a>に収載されています。</p>
+                        </div>
+                    </div>
+
+                    <!-- Information Sharing & Community -->
+                    <div class="activity-card no-image reveal">
+                        <div class="activity-content">
+                            <span class="activity-badge badge-navy"><i class="fas fa-bullhorn"></i> Outreach</span>
+                            <h3>情報発信・コミュニティ</h3>
+                            <p>専門知識を幅広く社会に還元する活動を行っています。</p>
+                            <ul class="activity-list">
+                                <li><a href="https://note.com/shinya_matsui" target="_blank" style="color: var(--sky); text-decoration: underline; text-underline-offset: 3px;">note</a> にてセキュリティ基礎知識の発信</li>
+                                <li><a href="http://www.youtube.com/@liberwork" target="_blank" style="color: var(--sky); text-decoration: underline; text-underline-offset: 3px;">YouTube</a> にてノーコード・ツール解説の実績</li>
+                                <li><a href="https://securityagent.jp/cont/cat-info/1759/" target="_blank" style="color: var(--sky); text-decoration: underline; text-underline-offset: 3px;">セキュリティ専門家交流会</a>等での登壇</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ======== Contact / Footer ======== -->
+    <footer class="contact-section" id="contact">
+        <div class="container">
+            <div class="section-header reveal" style="text-align: center;">
+                <span class="section-label">// Contact</span>
+                <h2 class="section-title" style="color: white;">Get in Touch</h2>
+            </div>
+            <p class="contact-text reveal">
+                お仕事のご依頼やご相談は、下記よりお気軽にご連絡ください。<br>
+                情報の力で、共に未来を切り拓きましょう。
+            </p>
+            <div class="contact-links reveal">
+                <a href="mailto:info@gliders.co.jp" class="contact-btn primary">
+                    <i class="fas fa-envelope"></i> Email
+                </a>
+                <a href="https://www.linkedin.com/in/%E7%9C%9F%E4%B9%9F-%E6%9D%BE%E4%BA%95-77293956/" target="_blank" class="contact-btn">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="https://github.com/Shinya-Matsui" target="_blank" class="contact-btn">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+            </div>
+            <div class="footer-bottom">
+                <span class="footer-copy">&copy; 2026 Shinya Matsui / Gliders LLC</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Scroll-triggered reveal animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -40px 0px'
+        });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 60);
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-links').classList.remove('open');
+            });
+        });
+    </script>
+
+</body>
 </html>
