@@ -1,0 +1,42 @@
+# 松井真也 (Shinya Matsui) - Portfolio
+
+> 情報処理安全確保支援士（RISS）。DXとサイバーセキュリティを通じて日本の存在感を高める。
+
+## About
+
+松井真也は情報処理安全確保支援士（RISS: Registered Information Security Specialist）として、サイバーセキュリティとDX（デジタルトランスフォーメーション）の分野で活動する専門家です。グライダーズ合同会社の代表として、セキュリティ教育と情報発信に取り組んでいます。
+
+## Expertise
+
+- サイバーセキュリティ: DX推進とセキュリティ強化を両立するアプローチ
+- グローバル対応: 国際機関への出向経験を活かした国際視点でのセキュリティ推進
+- 教育・情報発信: 専門知識を分かりやすく社会に還元する活動
+
+## Activities
+
+### Udemy講師
+ランサムウェア対策コースを運営。AIロールプレイなどの最新技術を導入した体験型学習を提供。すべてのコースがUdemyビジネスに収載。
+- https://www.udemy.com/user/song-jing-zhen-ye/
+
+### Gliders Learn
+RISS監修のセキュリティ学習プラットフォーム。情報セキュリティマネジメント試験（SG）対策として、7カテゴリ・全215問のオリジナルクイズと詳細な解説を提供。
+- https://learn.gliders.co.jp
+
+### 情報発信
+- note: https://note.com/shinya_matsui (セキュリティ基礎知識の発信)
+- YouTube: https://www.youtube.com/@liberwork (ツール解説)
+- セキュリティ専門家交流会等での登壇
+
+## Certifications
+
+- 情報処理安全確保支援士（RISS）
+- 情報セキュリティスペシャリスト
+- AWS Cloud Practitioner
+- TOEIC 945点
+- 英検1級
+
+## Contact
+
+- Email: info@gliders.co.jp
+- LinkedIn: https://www.linkedin.com/in/%E7%9C%9F%E4%B9%9F-%E6%9D%BE%E4%BA%95-77293956/
+- GitHub: https://github.com/Shinya-Matsui
