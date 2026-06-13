@@ -1583,9 +1583,10 @@
             const form = document.getElementById('partner-form');
             if (!form) return;
 
-            // 流入元（?ref=udemy / linkedin 等）を hidden フィールドに格納（GA4 計測と連動）
-            const ref = new URLSearchParams(window.location.search).get('ref');
-            if (ref) form.source.value = ref.slice(0, 100);
+            // 流入元を hidden フィールドに格納（GA4 のチャネル名と揃えるため utm_source を優先・?ref= は後方互換）
+            const params = new URLSearchParams(window.location.search);
+            const src = params.get('utm_source') || params.get('ref');
+            if (src) form.source.value = src.slice(0, 100);
 
             const btn = document.getElementById('partner-submit');
             const result = document.getElementById('partner-result');
