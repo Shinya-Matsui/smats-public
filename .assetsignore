@@ -1,0 +1,7 @@
+# 静的アセットとして配信したくないファイル（Worker ソース・設定・リポジトリ管理物）
+# .gitignore と同じパターン記法。
+worker.js
+src/
+wrangler.jsonc
+.assetsignore
+.gitignore

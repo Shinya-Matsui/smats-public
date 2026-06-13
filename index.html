@@ -1057,6 +1057,67 @@
         .partner-text strong { color: #fff; }
         .partner-note { font-family: var(--font-jp); font-size: 0.8rem; color: rgba(255,255,255,0.4); margin-top: 1.5rem; }
 
+        /* β導入パートナー申込フォーム（濃紺背景向け） */
+        .partner-form {
+            max-width: 600px; margin: 0 auto; text-align: left;
+            font-family: var(--font-jp);
+        }
+        .partner-form .form-row {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;
+        }
+        .partner-form .form-group { margin-bottom: 1.25rem; }
+        .partner-form label {
+            display: block; font-size: 0.85rem; font-weight: 600;
+            color: rgba(255,255,255,0.85); margin-bottom: 0.5rem;
+        }
+        .partner-form .required {
+            font-size: 0.7rem; color: var(--amber); margin-left: 0.4rem;
+            font-family: var(--font-mono);
+        }
+        .partner-form input,
+        .partner-form select,
+        .partner-form textarea {
+            width: 100%; box-sizing: border-box;
+            background: rgba(255,255,255,0.05); color: #fff;
+            border: 1px solid rgba(255,255,255,0.16); border-radius: var(--radius-sm);
+            padding: 0.75rem 0.95rem; font-size: 0.95rem; font-family: inherit;
+            transition: var(--transition);
+        }
+        .partner-form input::placeholder,
+        .partner-form textarea::placeholder { color: rgba(255,255,255,0.32); }
+        .partner-form select { color: rgba(255,255,255,0.7); }
+        .partner-form select option { background: var(--navy-deep); color: #fff; }
+        .partner-form input:focus,
+        .partner-form select:focus,
+        .partner-form textarea:focus {
+            outline: none; border-color: var(--sky);
+            background: rgba(14,165,233,0.08);
+        }
+        .partner-form .form-privacy {
+            font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-bottom: 1.25rem;
+        }
+        .partner-form .form-privacy a { color: rgba(14,165,233,0.9); text-decoration: underline; }
+        .partner-form .btn-submit {
+            width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
+            background: var(--sky); color: #fff; border: 1px solid var(--sky);
+            padding: 0.95rem 1.5rem; border-radius: 100px; font-size: 1rem; font-weight: 600;
+            cursor: pointer; transition: var(--transition);
+        }
+        .partner-form .btn-submit:hover:not(:disabled) {
+            background: #0284c7; transform: translateY(-2px); box-shadow: var(--shadow-glow);
+        }
+        .partner-form .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+        .partner-form .form-result {
+            margin-top: 1.25rem; padding: 0.9rem 1.1rem; border-radius: var(--radius-sm);
+            font-size: 0.9rem; line-height: 1.7;
+        }
+        .partner-form .form-result.success {
+            background: rgba(16,185,129,0.14); border: 1px solid rgba(16,185,129,0.35); color: #6ee7b7;
+        }
+        .partner-form .form-result.error {
+            background: rgba(239,68,68,0.14); border: 1px solid rgba(239,68,68,0.35); color: #fca5a5;
+        }
+
         @media (max-width: 968px) {
             .glearn-hero { grid-template-columns: 1fr; gap: 2rem; }
             .glearn-catch { font-size: 1.6rem; }
@@ -1361,12 +1422,51 @@
                     Gliders Learn の初期導入企業として、<strong>エッセンシャルプラン</strong>を<strong>6ヶ月間無料</strong>でご利用いただけます。
                     実際の運用でサービスを評価いただき、<strong>お客様の声・導入事例の掲載にご協力</strong>いただける企業さまを<strong>先着5社</strong>で募集しています。
                 </p>
-                <div class="glearn-cta reveal">
-                    <!-- TODO(Phase 2): この暫定 mailto を β導入パートナー申込フォーム（/api/partner-inquiry）に差し替える -->
-                    <a href="mailto:info@gliders.co.jp?subject=%E3%80%90%CE%B2%E5%B0%8E%E5%85%A5%E3%83%91%E3%83%BC%E3%83%88%E3%83%8A%E3%83%BC%E5%BF%9C%E5%8B%9F%E3%80%91" class="btn-primary-lg">
+                <form id="partner-form" class="partner-form reveal" novalidate>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="company">会社名 <span class="required">必須</span></label>
+                            <input type="text" id="company" name="company" required placeholder="例：株式会社○○">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">担当者名 <span class="required">必須</span></label>
+                            <input type="text" id="name" name="name" required placeholder="例：山田 太郎">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">メールアドレス <span class="required">必須</span></label>
+                            <input type="email" id="email" name="email" required placeholder="例：yamada@example.co.jp">
+                        </div>
+                        <div class="form-group">
+                            <label for="job_title">役職</label>
+                            <input type="text" id="job_title" name="job_title" placeholder="例：情報システム部 部長">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="size">従業員規模</label>
+                        <select id="size" name="size">
+                            <option value="">選択してください</option>
+                            <option value="1-10">1〜10名</option>
+                            <option value="11-50">11〜50名</option>
+                            <option value="51-100">51〜100名</option>
+                            <option value="101-300">101〜300名</option>
+                            <option value="301+">301名以上</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">ご質問・ご要望</label>
+                        <textarea id="message" name="message" rows="4" placeholder="導入時期やご関心のある研修テーマなど、お気軽にお書きください。"></textarea>
+                    </div>
+                    <input type="hidden" id="source" name="source" value="">
+                    <div class="form-privacy">
+                        <a href="https://learn.gliders.co.jp/legal/privacy.html" target="_blank" rel="noopener">プライバシーポリシー</a>に同意の上、送信してください。
+                    </div>
+                    <button type="submit" class="btn-submit" id="partner-submit">
                         <i class="fas fa-paper-plane"></i> β導入パートナーに応募する
-                    </a>
-                </div>
+                    </button>
+                    <div id="partner-result" class="form-result" hidden></div>
+                </form>
                 <p class="partner-note reveal">※6ヶ月の無料期間終了後は通常料金での自動更新となります（事前にご案内します）。応募多数の場合は先着順とさせていただきます。</p>
             </div>
         </section>
@@ -1477,6 +1577,62 @@
                 document.querySelector('.nav-links').classList.remove('open');
             });
         });
+
+        // β導入パートナー申込フォーム
+        (function () {
+            const form = document.getElementById('partner-form');
+            if (!form) return;
+
+            // 流入元（?ref=udemy / linkedin 等）を hidden フィールドに格納（GA4 計測と連動）
+            const ref = new URLSearchParams(window.location.search).get('ref');
+            if (ref) form.source.value = ref.slice(0, 100);
+
+            const btn = document.getElementById('partner-submit');
+            const result = document.getElementById('partner-result');
+            const btnLabel = '<i class="fas fa-paper-plane"></i> β導入パートナーに応募する';
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                btn.disabled = true;
+                btn.textContent = '送信中...';
+                result.hidden = true;
+
+                const data = {
+                    company: form.company.value.trim(),
+                    name: form.name.value.trim(),
+                    email: form.email.value.trim(),
+                    job_title: form.job_title.value.trim(),
+                    size: form.size.value,
+                    message: form.message.value.trim(),
+                    source: form.source.value,
+                };
+
+                try {
+                    const res = await fetch('/api/partner-inquiry', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data),
+                    });
+
+                    if (res.ok) {
+                        result.textContent = 'ご応募ありがとうございます。担当者より追ってご連絡いたします。';
+                        result.className = 'form-result success';
+                        result.hidden = false;
+                        form.reset();
+                    } else {
+                        const err = await res.json().catch(() => ({}));
+                        throw new Error(err.error || '送信に失敗しました');
+                    }
+                } catch (err) {
+                    result.textContent = err.message || '送信中にエラーが発生しました。お手数ですが info@gliders.co.jp まで直接ご連絡ください。';
+                    result.className = 'form-result error';
+                    result.hidden = false;
+                } finally {
+                    btn.disabled = false;
+                    btn.innerHTML = btnLabel;
+                }
+            });
+        })();
     </script>
 
 </body>

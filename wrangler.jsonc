@@ -1,7 +1,21 @@
 {
   "name": "smats-profile",
   "compatibility_date": "2026-02-08",
+  "compatibility_flags": ["nodejs_compat"],
+  // Worker エントリ（API ルーティング）。静的アセットにマッチしないパスのみ実行される。
+  "main": "worker.js",
+  // 静的アセット配信（従来どおりリポジトリルートを配信）。binding 経由で Worker からも参照可能。
   "assets": {
-    "directory": "./"
-  }
+    "directory": "./",
+    "binding": "ASSETS"
+  },
+  // β導入パートナー申込フォーム（/api/partner-inquiry）の保存先。
+  // gliders-learn と共用する ip-quiz D1 をバインド（partner_inquiries テーブル）。
+  "d1_databases": [
+    {
+      "binding": "IP_QUIZ_DB",
+      "database_name": "ip-quiz",
+      "database_id": "a46e34da-eb1d-4d73-986f-22439f6fa317"
+    }
+  ]
 }
