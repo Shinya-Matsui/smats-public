@@ -1057,7 +1057,7 @@
         .partner-text strong { color: #fff; }
         .partner-note { font-family: var(--font-jp); font-size: 0.8rem; color: rgba(255,255,255,0.4); margin-top: 1.5rem; }
 
-        /* β導入パートナー申込フォーム（濃紺背景向け） */
+        /* 先行導入パートナー申込フォーム（濃紺背景向け） */
         .partner-form {
             max-width: 600px; margin: 0 auto; text-align: left;
             font-family: var(--font-jp);
@@ -1137,7 +1137,7 @@
         <ul class="nav-links">
             <li><a href="#gliders-learn">法人研修</a></li>
             <li><a href="#expertise">監修者</a></li>
-            <li><a href="#partner" style="text-transform:none;">β導入募集</a></li>
+            <li><a href="#partner">先行導入募集</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
@@ -1170,7 +1170,7 @@
                             </a>
                             <a href="#partner" class="btn-outline-lg">
                                 <i class="fas fa-star"></i>
-                                β導入パートナー募集
+                                先行導入パートナー募集
                             </a>
                         </div>
                     </div>
@@ -1408,12 +1408,12 @@
             </div>
         </section>
 
-        <!-- ======== β導入パートナー募集 Section ======== -->
+        <!-- ======== 先行導入パートナー募集 Section ======== -->
         <section id="partner">
             <div class="container">
                 <div class="section-header reveal" style="text-align:center;">
                     <span class="section-label">// Partner Program</span>
-                    <h2 class="section-title">β導入パートナー募集</h2>
+                    <h2 class="section-title">先行導入パートナー募集</h2>
                 </div>
                 <div class="reveal" style="text-align:center;">
                     <span class="partner-badge"><i class="fas fa-star"></i> 先着5社・6ヶ月無料</span>
@@ -1463,7 +1463,7 @@
                         <a href="https://learn.gliders.co.jp/legal/privacy.html" target="_blank" rel="noopener">プライバシーポリシー</a>に同意の上、送信してください。
                     </div>
                     <button type="submit" class="btn-submit" id="partner-submit">
-                        <i class="fas fa-paper-plane"></i> β導入パートナーに応募する
+                        <i class="fas fa-paper-plane"></i> 先行導入パートナーに応募する
                     </button>
                     <div id="partner-result" class="form-result" hidden></div>
                 </form>
@@ -1578,7 +1578,7 @@
             });
         });
 
-        // β導入パートナー申込フォーム
+        // 先行導入パートナー申込フォーム
         (function () {
             const form = document.getElementById('partner-form');
             if (!form) return;
@@ -1590,7 +1590,7 @@
 
             const btn = document.getElementById('partner-submit');
             const result = document.getElementById('partner-result');
-            const btnLabel = '<i class="fas fa-paper-plane"></i> β導入パートナーに応募する';
+            const btnLabel = '<i class="fas fa-paper-plane"></i> 先行導入パートナーに応募する';
 
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();

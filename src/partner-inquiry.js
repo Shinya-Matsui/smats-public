@@ -1,6 +1,6 @@
-// β導入パートナー申込フォーム受付ハンドラ
+// 先行導入パートナー申込フォーム受付ハンドラ
 //
-// smats.jp（信頼ハブ）のβ導入パートナー募集フォームからの応募を、
+// smats.jp（信頼ハブ）の先行導入パートナー募集フォームからの応募を、
 // ip-quiz D1（gliders-learn と共用）の partner_inquiries に保存し、
 // Resend 経由で info@gliders.co.jp へ通知する。認証不要の公開エンドポイント。
 //
@@ -81,9 +81,9 @@ export async function handlePartnerInquiry(request, env) {
           from: "Gliders Learn <noreply@gliders.co.jp>",
           to: ["info@gliders.co.jp"],
           reply_to: trimmed.email,
-          subject: `【β導入パートナー】${trimmed.company}`,
+          subject: `【先行導入パートナー】${trimmed.company}`,
           text: [
-            "=== β導入パートナー応募 (smats.jp) ===",
+            "=== 先行導入パートナー応募 (smats.jp) ===",
             "",
             `会社名: ${trimmed.company}`,
             `担当者名: ${trimmed.name}`,
@@ -96,7 +96,7 @@ export async function handlePartnerInquiry(request, env) {
             trimmed.message || "（なし）",
             "",
             "---",
-            "このメールは smats.jp のβ導入パートナー募集フォームから自動送信されています。",
+            "このメールは smats.jp の先行導入パートナー募集フォームから自動送信されています。",
           ].join("\n"),
         }),
       });

@@ -2,7 +2,7 @@
 //
 // 静的アセット（index.html ほか）は assets 設定で自動配信され、
 // 静的アセットにマッチしないパスだけこの Worker が実行される。
-// ここでは β導入パートナー申込フォームの API のみを捌き、
+// ここでは 先行導入パートナー申込フォームの API のみを捌き、
 // それ以外は静的アセット配信に委譲する。
 
 import { handlePartnerInquiry } from "./src/partner-inquiry.js";
