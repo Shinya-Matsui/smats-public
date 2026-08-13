@@ -8,3 +8,8 @@ node_modules/
 # OS
 .DS_Store
 Thumbs.db
+
+# 作業メモ・エージェント向け指示（配信もしないし、リポジトリにも入れない）
+plans/
+CLAUDE.md
+AGENTS.md
