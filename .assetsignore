@@ -6,6 +6,12 @@ wrangler.jsonc
 .assetsignore
 .gitignore
 
+# リポジトリ本体とローカル状態（wrangler は .gitignore を見ないので明示除外）
+.git/
+.wrangler/
+.dev.vars
+node_modules/
+
 # 作業メモ・エージェント指示（git 未追跡でも wrangler は手元のディレクトリから
 # 上げてしまうため、追跡状態に関係なく明示除外する）
 plans/
