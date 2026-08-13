@@ -1,28 +1,38 @@
 User-agent: *
 Allow: /
+# API エンドポイント（POST専用・クロール無意味）
+Disallow: /api/
 Sitemap: https://smats.jp/sitemap.xml
 
-# AI Crawlers - Welcome
-User-agent: GPTBot
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: anthropic-ai
-Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: Bytespider
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: Applebot-Extended
-Allow: /
+# ---------------------------------------------------------------------------
+# AI クローラについて（2026-08-13・F-2）
+#
+# ここには User-agent 別のグループを書かない。意図して空にしてある。
+# learn.gliders.co.jp の robots.txt（S-3）と同じ形。
+#
+# 方針は「学習用は断る / 検索時の取得は通す」。その宣言は Cloudflare の
+# managed robots.txt が **このファイルの上に注入する** ブロックが担う
+# （smats.jp ゾーン > Security > Settings > Bot traffic の「Set your preference
+# for blocking AI training in robots.txt」）。
+#
+# 以前ここには「AI Crawlers - Welcome」として GPTBot / Google-Extended /
+# ChatGPT-User / anthropic-ai / ClaudeBot / Bytespider / PerplexityBot /
+# Applebot-Extended に Allow: / を書いた 8 グループが並んでいたが、2 つの理由で
+# 削除した。
+#
+# 1. **上の宣言と正反対になる。** robots.txt は同じ User-agent のグループを
+#    併合し、同じ強さの Allow と Disallow がぶつかると Allow が勝つ
+#    （RFC 9309 2.2.2）。managed 側の学習ブロックをこの節が打ち消してしまう。
+# 2. **`User-agent: *` の Disallow をすり抜けさせる。** robots.txt はマッチする
+#    最も具体的なグループ **1 つだけ** が適用される。GPTBot 用のグループを
+#    書いた時点で、GPTBot は上の `User-agent: *` を読まなくなり、
+#    /api/ の Disallow が届かなくなる。
+#
+# 検索・エージェント系（OAI-SearchBot / ChatGPT-User / Claude-SearchBot /
+# Claude-User / PerplexityBot / Perplexity-User / Applebot）は managed 側の
+# Disallow に入らないので、上の `User-agent: *` の Allow: / で通る。
+# **わざわざ個別に Allow を書くと理由 2 の穴が開くので書かないこと。**
+#
+# なお robots.txt は宣言であって強制ではない。強制したくなった場合も
+# ゾーンの「Block AI bots」は使わないこと（検索系まで一緒に 403 になる）。
+# WAF カスタムルールを 1 本書く（無料プランでも 5 本使える）。
