@@ -1554,50 +1554,214 @@
     </footer>
 
     <!-- Structured Data (JSON-LD) -->
+    <!--
+      構造化データは @graph で 4 エンティティを相互参照させている。
+      ProfilePage（このページ）/ Person（監修者）/ Organization（運営会社）/ Service（Gliders Learn）。
+      価格・コース・パートナー条件は、いずれも本文に可視で書かれている内容とのみ対応させること
+      （ページに無い情報を構造化データだけに書くとガイドライン違反になる）。
+      数字の正本は learn.gliders.co.jp の /pricing。変えるときは必ず両方を同時に直す。
+    -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "ProfilePage",
-        "mainEntity": {
-            "@type": "Person",
-            "name": "松井真也",
-            "alternateName": "Shinya Matsui",
-            "url": "https://smats.jp/",
-            "image": "https://smats.jp/assets/profile.jpg",
-            "jobTitle": "情報処理安全確保支援士（RISS）",
-            "description": "情報処理安全確保支援士（RISS）・Udemy Business 採用講師。Pマーク・ISMS 監査で使える証拠まで残せる法人向けセキュリティ研修「Gliders Learn」を監修・提供。",
-            "knowsAbout": ["法人セキュリティ研修", "従業員教育", "Pマーク", "ISMS", "監査対応", "IPA 10大脅威", "ランサムウェア対策"],
-            "worksFor": {
-                "@type": "Organization",
-                "name": "グライダーズ合同会社",
-                "url": "https://gliders.co.jp"
+        "@graph": [
+            {
+                "@type": "ProfilePage",
+                "@id": "https://smats.jp/#profilepage",
+                "url": "https://smats.jp/",
+                "name": "松井真也 | 監査対応の法人セキュリティ研修 Gliders Learn 監修者（RISS）",
+                "inLanguage": "ja",
+                "mainEntity": { "@id": "https://smats.jp/#person" },
+                "about": { "@id": "https://learn.gliders.co.jp/#service" },
+                "dateModified": "2026-08-13T00:00:00+09:00"
             },
-            "hasCredential": [
-                {
-                    "@type": "EducationalOccupationalCredential",
-                    "credentialCategory": "国家資格",
-                    "name": "情報処理安全確保支援士（RISS）"
-                },
-                {
-                    "@type": "EducationalOccupationalCredential",
-                    "credentialCategory": "国家資格",
-                    "name": "情報セキュリティスペシャリスト"
-                },
-                {
-                    "@type": "EducationalOccupationalCredential",
-                    "credentialCategory": "語学",
-                    "name": "TOEIC 945点"
+            {
+                "@type": "Person",
+                "@id": "https://smats.jp/#person",
+                "name": "松井真也",
+                "alternateName": "Shinya Matsui",
+                "url": "https://smats.jp/",
+                "image": "https://smats.jp/assets/profile.jpg",
+                "jobTitle": "情報処理安全確保支援士（RISS）",
+                "description": "情報処理安全確保支援士（RISS）・Udemy Business 採用講師。Pマーク・ISMS 監査で使える証拠まで残せる法人向けセキュリティ研修「Gliders Learn」を監修・提供。",
+                "knowsAbout": ["法人セキュリティ研修", "従業員教育", "Pマーク", "ISMS", "監査対応", "IPA 10大脅威", "ランサムウェア対策"],
+                "worksFor": { "@id": "https://gliders.co.jp/#organization" },
+                "hasCredential": [
+                    {
+                        "@type": "EducationalOccupationalCredential",
+                        "credentialCategory": "国家資格",
+                        "name": "情報処理安全確保支援士（RISS）"
+                    },
+                    {
+                        "@type": "EducationalOccupationalCredential",
+                        "credentialCategory": "国家資格",
+                        "name": "情報セキュリティスペシャリスト"
+                    },
+                    {
+                        "@type": "EducationalOccupationalCredential",
+                        "credentialCategory": "語学",
+                        "name": "TOEIC 945点"
+                    }
+                ],
+                "sameAs": [
+                    "https://www.linkedin.com/in/%E7%9C%9F%E4%B9%9F-%E6%9D%BE%E4%BA%95-77293956/",
+                    "https://github.com/Shinya-Matsui",
+                    "https://note.com/shinya_matsui",
+                    "https://www.udemy.com/user/song-jing-zhen-ye/",
+                    "https://learn.gliders.co.jp"
+                ]
+            },
+            {
+                "@type": "Organization",
+                "@id": "https://gliders.co.jp/#organization",
+                "name": "グライダーズ合同会社",
+                "alternateName": "Gliders LLC",
+                "url": "https://gliders.co.jp",
+                "email": "info@gliders.co.jp",
+                "areaServed": "JP",
+                "founder": { "@id": "https://smats.jp/#person" }
+            },
+            {
+                "@type": "Service",
+                "@id": "https://learn.gliders.co.jp/#service",
+                "name": "Gliders Learn",
+                "serviceType": "法人向けサイバーセキュリティ研修サブスクリプション",
+                "description": "情報セキュリティ研修を「受けっぱなし」で終わらせず、個人修了証と組織修了証明書という監査対応の証拠として残せる法人向けサブスクリプション。Pマーク・ISMS 認証、取引先からのセキュリティ要求、入札要件、サイバー保険の場面で活用できる。",
+                "url": "https://learn.gliders.co.jp/",
+                "inLanguage": "ja",
+                "areaServed": "JP",
+                "provider": { "@id": "https://gliders.co.jp/#organization" },
+                "audience": { "@type": "BusinessAudience", "name": "法人・団体（全社員向けセキュリティ研修の実施担当者）" },
+                "offers": [
+                    {
+                        "@type": "Offer",
+                        "name": "無料プラン",
+                        "description": "10 アカウントまで。ランサムウェア初動対応シミュレーション（約 25 分）のみ受講可能。修了証の発行なし。クレジットカード登録不要・自動更新なし。",
+                        "price": 0,
+                        "priceCurrency": "JPY",
+                        "url": "https://learn.gliders.co.jp/pricing",
+                        "eligibleQuantity": { "@type": "QuantitativeValue", "maxValue": 10, "unitText": "アカウント" }
+                    },
+                    {
+                        "@type": "Offer",
+                        "name": "スタンダードプラン（〜10 名）",
+                        "description": "全 4 コースが対象。個人修了証と組織修了証明書を発行。プランによるコースの出し分けはなく、価格は契約席数だけで決まる。",
+                        "priceCurrency": "JPY",
+                        "url": "https://learn.gliders.co.jp/pricing",
+                        "eligibleQuantity": { "@type": "QuantitativeValue", "maxValue": 10, "unitText": "アカウント" },
+                        "priceSpecification": {
+                            "@type": "UnitPriceSpecification",
+                            "price": 3000,
+                            "priceCurrency": "JPY",
+                            "valueAddedTaxIncluded": false,
+                            "billingDuration": "P1M",
+                            "unitText": "月額"
+                        }
+                    },
+                    {
+                        "@type": "Offer",
+                        "name": "スタンダードプラン（〜30 名）",
+                        "description": "全 4 コースが対象。個人修了証と組織修了証明書を発行。コースの内容は席数ティアによって変わらない。",
+                        "priceCurrency": "JPY",
+                        "url": "https://learn.gliders.co.jp/pricing",
+                        "eligibleQuantity": { "@type": "QuantitativeValue", "maxValue": 30, "unitText": "アカウント" },
+                        "priceSpecification": {
+                            "@type": "UnitPriceSpecification",
+                            "price": 6000,
+                            "priceCurrency": "JPY",
+                            "valueAddedTaxIncluded": false,
+                            "billingDuration": "P1M",
+                            "unitText": "月額"
+                        }
+                    },
+                    {
+                        "@type": "Offer",
+                        "name": "スタンダードプラン（〜100 名）",
+                        "description": "全 4 コースが対象。個人修了証と組織修了証明書を発行。100 名を超える場合は応相談。",
+                        "priceCurrency": "JPY",
+                        "url": "https://learn.gliders.co.jp/pricing",
+                        "eligibleQuantity": { "@type": "QuantitativeValue", "maxValue": 100, "unitText": "アカウント" },
+                        "priceSpecification": {
+                            "@type": "UnitPriceSpecification",
+                            "price": 18000,
+                            "priceCurrency": "JPY",
+                            "valueAddedTaxIncluded": false,
+                            "billingDuration": "P1M",
+                            "unitText": "月額"
+                        }
+                    },
+                    {
+                        "@type": "Offer",
+                        "name": "先行導入パートナー（先着 5 社）",
+                        "description": "スタンダードプランの〜10 名（月額 ¥3,000 税別）を 6 ヶ月間無料。申し込み時にクレジットカードの登録が必要で、無料期間中に請求は発生せずいつでも解約できる。無料期間の終了後は通常料金で自動更新。お客様の声・導入事例の掲載への協力が条件。",
+                        "price": 0,
+                        "priceCurrency": "JPY",
+                        "url": "https://smats.jp/#partner",
+                        "availability": "https://schema.org/LimitedAvailability",
+                        "inventoryLevel": { "@type": "QuantitativeValue", "value": 5, "unitText": "社" },
+                        "eligibleDuration": { "@type": "QuantitativeValue", "value": 6, "unitCode": "MON" }
+                    }
+                ],
+                "hasOfferCatalog": {
+                    "@type": "OfferCatalog",
+                    "name": "提供コース（全 4 コース。スタンダードプランはすべてが対象）",
+                    "itemListElement": [
+                        {
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Course",
+                                "name": "サイバーセキュリティ基礎研修 IPA10大脅威 全対応版",
+                                "alternateName": "全社員向けサイバーセキュリティ基礎研修（IPA10大脅威【組織編】対応）",
+                                "description": "IPA「情報セキュリティ10大脅威【組織編】」の 1 位〜10 位すべてに 1 対 1 で対応した 13 モジュール構成の座学コース。修了証には alternateName の正式名が印字される。",
+                                "provider": { "@id": "https://gliders.co.jp/#organization" },
+                                "inLanguage": "ja",
+                                "timeRequired": "PT180M",
+                                "educationalCredentialAwarded": "個人修了証・組織修了証明書",
+                                "hasCourseInstance": { "@type": "CourseInstance", "courseMode": "online", "courseWorkload": "PT180M" }
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Course",
+                                "name": "サイバーセキュリティ基礎研修 主要3脅威版",
+                                "alternateName": "全社員向けサイバーセキュリティ基礎研修（IPA10大脅威 主要 3 脅威 対応）",
+                                "description": "全社員向けの短時間版。主要 3 脅威にしぼった 6 モジュール構成の座学コース。修了証には alternateName の正式名が印字される。",
+                                "provider": { "@id": "https://gliders.co.jp/#organization" },
+                                "inLanguage": "ja",
+                                "timeRequired": "PT120M",
+                                "educationalCredentialAwarded": "個人修了証・組織修了証明書",
+                                "hasCourseInstance": { "@type": "CourseInstance", "courseMode": "online", "courseWorkload": "PT120M" }
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Course",
+                                "name": "ランサムウェア初動対応シミュレーション",
+                                "description": "分岐型のシミュレーション教材。無料プランで受講できる唯一のコース。",
+                                "provider": { "@id": "https://gliders.co.jp/#organization" },
+                                "inLanguage": "ja",
+                                "timeRequired": "PT25M",
+                                "hasCourseInstance": { "@type": "CourseInstance", "courseMode": "online", "courseWorkload": "PT25M" }
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Course",
+                                "name": "BEC（ビジネスメール詐欺）初動対応シミュレーション",
+                                "description": "分岐型のシミュレーション教材。スタンダードプランのみで受講できる。",
+                                "provider": { "@id": "https://gliders.co.jp/#organization" },
+                                "inLanguage": "ja",
+                                "timeRequired": "PT25M",
+                                "hasCourseInstance": { "@type": "CourseInstance", "courseMode": "online", "courseWorkload": "PT25M" }
+                            }
+                        }
+                    ]
                 }
-            ],
-            "sameAs": [
-                "https://www.linkedin.com/in/%E7%9C%9F%E4%B9%9F-%E6%9D%BE%E4%BA%95-77293956/",
-                "https://github.com/Shinya-Matsui",
-                "https://note.com/shinya_matsui",
-                "https://www.udemy.com/user/song-jing-zhen-ye/",
-                "https://learn.gliders.co.jp"
-            ]
-        },
-        "dateModified": "2026-08-13T00:00:00+09:00"
+            }
+        ]
     }
     </script>
 
