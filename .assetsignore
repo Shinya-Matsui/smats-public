@@ -5,3 +5,9 @@ src/
 wrangler.jsonc
 .assetsignore
 .gitignore
+
+# 作業メモ・エージェント指示（git 未追跡でも wrangler は手元のディレクトリから
+# 上げてしまうため、追跡状態に関係なく明示除外する）
+plans/
+**/CLAUDE.md
+**/AGENTS.md
