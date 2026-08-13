@@ -37,6 +37,17 @@
 - TOEIC 945点
 - 英検1級
 
+## TIL（技術メモ）
+
+Cloudflare・Claude Code・セキュリティまわりの実装メモ。素の Markdown で公開している。
+
+- 目次: https://smats.jp/til/README.md
+- https://smats.jp/til/2026-02-21-cloudflare-email-routing-smtp2go-gmail.md — Cloudflare Email Routing + SMTP2GO でカスタムドメインメールを無料構築する
+- https://smats.jp/til/2026-02-15-claude-code-quiz-app-mvp.md — Claude Code でセキュリティ試験クイズアプリの MVP を 1 日で作った話
+- https://smats.jp/til/2026-02-11-cloudflare-custom-domain-setup.md — Cloudflare でカスタムドメインを Workers/Pages に設定する
+- https://smats.jp/til/2026-02-07-claude-code-profile-site.md — Claude Code でプロフィールサイトを自動生成した話
+- https://smats.jp/til/2026-01-18-claude-agent-skills.md — Claude Code の Agent Skills と Antigravity での実践
+
 ## Contact / Links
 
 - Email: info@gliders.co.jp

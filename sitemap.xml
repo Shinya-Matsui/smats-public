@@ -6,4 +6,12 @@
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
+  <!-- TIL は素の Markdown（Content-Type: text/markdown）で配信している。
+       個別記事を並べるより、目次である README を 1 本置いてそこから辿らせる。 -->
+  <url>
+    <loc>https://smats.jp/til/README.md</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
 </urlset>
