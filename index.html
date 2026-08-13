@@ -992,11 +992,29 @@
         }
         .glearn-case i { color: var(--sky); font-size: 0.85rem; }
 
+        .course-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+            margin-bottom: 2.5rem;
+        }
+        .course-item {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 0.9rem 1.1rem;
+            background: var(--card);
+        }
+        .course-item-name { font-family: var(--font-jp); font-weight: 600; font-size: 0.9rem; color: var(--navy-deep); line-height: 1.5; }
+        .course-item-meta { font-family: var(--font-jp); font-size: 0.78rem; color: var(--text-light); margin-top: 0.3rem; }
+
         .plan-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 1.5rem;
             margin-bottom: 2.5rem;
+            max-width: 840px;
+            margin-left: auto;
+            margin-right: auto;
         }
         .plan-card {
             border: 1px solid var(--border);
@@ -1020,6 +1038,18 @@
         .plan-feat li::before { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: var(--sky); position: absolute; left: 0; font-size: 0.7rem; top: 0.55rem; }
         .plan-feat li.no { color: var(--border); }
         .plan-feat li.no::before { content: '\f00d'; color: var(--border); }
+        .plan-tiers { width: 100%; border-collapse: collapse; margin-top: 0.9rem; }
+        .plan-tiers caption {
+            font-family: var(--font-jp); font-size: 0.75rem; color: var(--text-light);
+            text-align: left; padding-bottom: 0.35rem;
+        }
+        .plan-tiers th, .plan-tiers td {
+            font-family: var(--font-jp); font-size: 0.85rem; color: var(--navy);
+            padding: 0.35rem 0; border-bottom: 1px solid var(--border-light); text-align: left;
+        }
+        .plan-tiers th { font-weight: 400; color: var(--text-light); }
+        .plan-tiers td { text-align: right; font-weight: 600; }
+        .plan-tiers tr:last-child th, .plan-tiers tr:last-child td { border-bottom: none; }
 
         .glearn-cta { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
         .glearn-note { font-family: var(--font-jp); font-size: 0.8rem; color: var(--text-light); text-align: center; margin-top: 1.25rem; }
@@ -1055,7 +1085,8 @@
             line-height: 1.95; max-width: 640px; margin: 0 auto 2.5rem;
         }
         .partner-text strong { color: #fff; }
-        .partner-note { font-family: var(--font-jp); font-size: 0.8rem; color: rgba(255,255,255,0.4); margin-top: 1.5rem; }
+        .partner-note { font-family: var(--font-jp); font-size: 0.8rem; color: rgba(255,255,255,0.62); margin-top: 1.5rem; line-height: 1.8; }
+        .partner-note strong { color: rgba(255,255,255,0.88); font-weight: 600; }
 
         /* 先行導入パートナー申込フォーム（濃紺背景向け） */
         .partner-form {
@@ -1122,6 +1153,7 @@
             .glearn-hero { grid-template-columns: 1fr; gap: 2rem; }
             .glearn-catch { font-size: 1.6rem; }
             .plan-grid { grid-template-columns: 1fr; }
+            .course-list { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -1344,7 +1376,7 @@
                             受講して終わりではなく、<strong>個人修了証</strong>と<strong>組織修了証明書</strong>をセットで発行し、研修を「やった証拠」まで残せます。
                         </p>
                         <div class="glearn-cta" style="justify-content:flex-start;">
-                            <a href="https://learn.gliders.co.jp/pricing.html" target="_blank" class="btn-primary-lg">
+                            <a href="https://learn.gliders.co.jp/pricing" target="_blank" class="btn-primary-lg">
                                 <i class="fas fa-tags"></i> 料金・プラン詳細
                             </a>
                             <a href="https://learn.gliders.co.jp/admin/setup?ref=smats" target="_blank" class="btn-outline-lg">
@@ -1371,40 +1403,60 @@
                     <span class="glearn-case"><i class="fas fa-umbrella"></i> サイバー保険の引受審査</span>
                 </div>
 
+                <div class="course-list reveal">
+                    <div class="course-item">
+                        <div class="course-item-name">サイバーセキュリティ基礎研修 IPA10大脅威 全対応版</div>
+                        <div class="course-item-meta">13 モジュール・約 3 時間／情シス・管理職向け</div>
+                    </div>
+                    <div class="course-item">
+                        <div class="course-item-name">サイバーセキュリティ基礎研修 主要3脅威版</div>
+                        <div class="course-item-meta">6 モジュール・約 2 時間／全社員向け</div>
+                    </div>
+                    <div class="course-item">
+                        <div class="course-item-name">ランサムウェア初動対応シミュレーション</div>
+                        <div class="course-item-meta">分岐型・約 25 分／無料プランでも受講可</div>
+                    </div>
+                    <div class="course-item">
+                        <div class="course-item-name">BEC（ビジネスメール詐欺）初動対応シミュレーション</div>
+                        <div class="course-item-meta">分岐型・約 25 分</div>
+                    </div>
+                </div>
+
                 <div class="plan-grid reveal">
                     <div class="plan-card">
                         <div class="plan-name">無料プラン</div>
                         <div class="plan-price">¥0</div>
                         <ul class="plan-feat">
-                            <li>3 アカウント・カード登録不要</li>
-                            <li>主要モジュールをお試し</li>
-                            <li class="no">修了証の発行</li>
-                            <li class="no">監査対応の証明書</li>
+                            <li>10 アカウントまで・カード登録不要</li>
+                            <li>ランサムウェア初動対応シミュレーション（約 25 分）</li>
+                            <li>受講管理・進捗ダッシュボード</li>
+                            <li class="no">座学コース（2 コース）</li>
+                            <li class="no">個人修了証・組織修了証明書</li>
                         </ul>
                     </div>
                     <div class="plan-card featured">
-                        <span class="plan-tag">本命プラン</span>
-                        <div class="plan-name">エッセンシャル</div>
-                        <div class="plan-price">¥6,000<small> 〜／月（税別）</small></div>
+                        <span class="plan-tag">研修として運用するなら</span>
+                        <div class="plan-name">スタンダードプラン</div>
+                        <div class="plan-price">¥3,000<small> 〜／月（税別）</small></div>
+                        <table class="plan-tiers">
+                            <caption>ご利用人数で決まる月額（税別）</caption>
+                            <tbody>
+                                <tr><th scope="row">〜10 名</th><td>¥3,000</td></tr>
+                                <tr><th scope="row">〜30 名</th><td>¥6,000</td></tr>
+                                <tr><th scope="row">〜100 名</th><td>¥18,000</td></tr>
+                                <tr><th scope="row">100 名超</th><td>応相談</td></tr>
+                            </tbody>
+                        </table>
                         <ul class="plan-feat">
-                            <li>主要 3 脅威の研修（6 モジュール）</li>
+                            <li>全 4 コースが対象（座学 2 ＋ シミュレーション 2）</li>
                             <li>個人修了証を発行</li>
                             <li>組織修了証明書を発行</li>
-                            <li>〜30名 ¥6,000／〜100名 ¥18,000</li>
-                        </ul>
-                    </div>
-                    <div class="plan-card">
-                        <div class="plan-name">スタンダード</div>
-                        <div class="plan-price">¥12,000<small> 〜／月（税別）</small></div>
-                        <ul class="plan-feat">
-                            <li>IPA 10大脅威 全 13 モジュール</li>
-                            <li>Pマーク・ISMS 監査に対応</li>
-                            <li>個人＋組織の修了証明書</li>
-                            <li>〜30名 ¥12,000／〜100名 ¥36,000</li>
+                            <li>修了証は 10 年間保管</li>
                         </ul>
                     </div>
                 </div>
-                <p class="glearn-note reveal">価格は税別・月額。「〜30名」「〜100名」の定額制（人数従量ではありません）。100名超は応相談。</p>
+                <p class="glearn-note reveal">価格は税別・月額。<strong>プランによってコースは変わりません</strong>——スタンダードプランは席数にかかわらず全 4 コースが対象で、変わるのは契約席数だけです（人数従量ではありません）。100 名超は応相談。</p>
+                <p class="glearn-note reveal">修了証には各コースの正式名が印字されます（例：「IPA10大脅威 全対応版」の修了証は「全社員向けサイバーセキュリティ基礎研修（IPA10大脅威【組織編】対応）」）。</p>
             </div>
         </section>
 
@@ -1419,7 +1471,7 @@
                     <span class="partner-badge"><i class="fas fa-star"></i> 先着5社・6ヶ月無料</span>
                 </div>
                 <p class="partner-text reveal">
-                    Gliders Learn の初期導入企業として、<strong>エッセンシャルプラン</strong>を<strong>6ヶ月間無料</strong>でご利用いただけます。
+                    Gliders Learn の初期導入企業として、<strong>スタンダードプランの〜10 名（月額 ¥3,000 税別）</strong>を<strong>6ヶ月間無料</strong>でご利用いただけます。全 4 コースと修了証発行をフル機能でお試しいただけます。
                     実際の運用でサービスを評価いただき、<strong>お客様の声・導入事例の掲載にご協力</strong>いただける企業さまを<strong>先着5社</strong>で募集しています。
                 </p>
                 <form id="partner-form" class="partner-form reveal" novalidate>
@@ -1460,14 +1512,14 @@
                     </div>
                     <input type="hidden" id="source" name="source" value="">
                     <div class="form-privacy">
-                        <a href="https://learn.gliders.co.jp/legal/privacy.html" target="_blank" rel="noopener">プライバシーポリシー</a>に同意の上、送信してください。
+                        <a href="https://learn.gliders.co.jp/legal/privacy" target="_blank" rel="noopener">プライバシーポリシー</a>に同意の上、送信してください。
                     </div>
                     <button type="submit" class="btn-submit" id="partner-submit">
                         <i class="fas fa-paper-plane"></i> 先行導入パートナーに応募する
                     </button>
                     <div id="partner-result" class="form-result" hidden></div>
                 </form>
-                <p class="partner-note reveal">※6ヶ月の無料期間終了後は通常料金での自動更新となります（事前にご案内します）。応募多数の場合は先着順とさせていただきます。</p>
+                <p class="partner-note reveal">※<strong>お申し込み時にクレジットカードのご登録が必要です。</strong>6ヶ月間の無料期間中に請求は発生せず、いつでも解約いただけます（費用は一切かかりません）。無料期間の終了後は通常料金での自動更新となりますので、事前に改めてご案内します。応募多数の場合は先着順とさせていただきます。</p>
             </div>
         </section>
 
@@ -1545,7 +1597,7 @@
                 "https://learn.gliders.co.jp"
             ]
         },
-        "dateModified": "2026-06-13T00:00:00+09:00"
+        "dateModified": "2026-08-13T00:00:00+09:00"
     }
     </script>
 
