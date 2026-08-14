@@ -100,6 +100,15 @@
             box-sizing: border-box;
         }
 
+        /* img の width/height 属性は「アスペクト比のヒント」として付けている（CLS 対策）。
+           実寸は CSS が決めるので height を auto に落としておくこと。これを書かないと、
+           CSS で width だけ指定した画像に属性の height がそのまま px として効いて縦に歪む。
+           逆に CSS で height を指定する画像には、個別に width: auto を添える。 */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
         html {
             scroll-behavior: smooth;
             -webkit-font-smoothing: antialiased;
@@ -347,6 +356,7 @@
 
         .hero-title img {
             height: 2em;
+            width: auto;
         }
 
         .hero-mission {
@@ -940,7 +950,7 @@
             gap: 0.6rem;
             margin-bottom: 1.25rem;
         }
-        .glearn-brand img { height: 28px; }
+        .glearn-brand img { height: 28px; width: auto; }
 
         .glearn-hero {
             display: grid;
