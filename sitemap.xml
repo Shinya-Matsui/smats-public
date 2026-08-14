@@ -14,4 +14,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
+  <!-- ai-skills も til と同じ扱い。素の Markdown（Content-Type: text/markdown）で
+       配信しているので、目次である README を 1 本だけ載せる。 -->
+  <url>
+    <loc>https://smats.jp/ai-skills/README.md</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
 </urlset>

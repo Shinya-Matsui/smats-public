@@ -48,6 +48,13 @@ Cloudflare・Claude Code・セキュリティまわりの実装メモ。素の M
 - https://smats.jp/til/2026-02-07-claude-code-profile-site.md — Claude Code でプロフィールサイトを自動生成した話
 - https://smats.jp/til/2026-01-18-claude-agent-skills.md — Claude Code の Agent Skills と Antigravity での実践
 
+## AI Agent Skills（公開スキル定義）
+
+Claude Code / Antigravity 等の AI エージェント向けに書いた SKILL.md テンプレート集。素の Markdown で公開している。
+
+- 目次: https://smats.jp/ai-skills/README.md
+- https://smats.jp/ai-skills/daily-reporter/SKILL.md — Daily Reporter：日々の出来事を聞き取り、構造化された日報 Markdown を自動作成するスキル定義
+
 ## Contact / Links
 
 - Email: info@gliders.co.jp
