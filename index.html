@@ -17,7 +17,7 @@
     <meta name="keywords" content="松井真也,Shinya Matsui,情報処理安全確保支援士,RISS,法人 セキュリティ研修,従業員教育,Pマーク,ISMS,監査対応,Gliders Learn,IPA 10大脅威,Udemy Business">
     <meta name="author" content="松井真也">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-    <meta name="theme-color" content="#0f172a">
+    <meta name="theme-color" content="#f6f7f5">
     <title>松井真也 | 監査対応の法人セキュリティ研修 Gliders Learn 監修者（RISS）</title>
 
     <!-- OGP (Open Graph Protocol) -->
@@ -47,958 +47,208 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-    <style>
-        /* ========================================
-           CSS Variables & Reset
-        ======================================== */
-        :root {
-            --navy: #1e293b;
-            --navy-deep: #0f172a;
-            --sky: #0ea5e9;
-            --sky-light: #e0f2fe;
-            --sky-glow: rgba(14, 165, 233, 0.15);
-            --amber: #f59e0b;
-            --amber-light: #fef3c7;
-            --bg: #fafaf9;
-            --bg-warm: #f5f5f0;
-            --card: #ffffff;
-            --text: #334155;
-            --text-light: #64748b;
-            --border: #e2e8f0;
-            --border-light: #f1f5f9;
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
-            --shadow-md: 0 4px 20px rgba(0,0,0,0.06);
-            --shadow-lg: 0 10px 40px rgba(0,0,0,0.08);
-            --shadow-glow: 0 0 40px rgba(14, 165, 233, 0.12);
-            --radius: 16px;
-            --radius-sm: 8px;
-            --transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-            --font-display: 'DM Serif Display', Georgia, serif;
-            --font-body: 'Outfit', 'Noto Sans JP', sans-serif;
-            --font-jp: 'Noto Sans JP', sans-serif;
-            --font-mono: 'JetBrains Mono', monospace;
-        }
-
-
-        /* インライン SVG アイコン（Font Awesome Free 6.5.0 / CC BY 4.0 を <symbol> 化したもの）。
-           font-size に追従し色は currentColor を継承するので、旧 <i class="fas"> と同じ感覚で使える。 */
-        .icon {
-            width: 1em;
-            height: 1em;
-            fill: currentColor;
-            vertical-align: -0.125em;
-            flex-shrink: 0;
-        }
-
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* img の width/height 属性は「アスペクト比のヒント」として付けている（CLS 対策）。
-           実寸は CSS が決めるので height を auto に落としておくこと。これを書かないと、
-           CSS で width だけ指定した画像に属性の height がそのまま px として効いて縦に歪む。
-           逆に CSS で height を指定する画像には、個別に width: auto を添える。 */
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            /* nav が position: fixed なので、アンカー着地点をヘッダーの高さぶん下げる */
-            scroll-padding-top: 5rem;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        body {
-            font-family: var(--font-body);
-            color: var(--text);
-            background: var(--bg);
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
-
-        /* ========================================
-           Background Pattern
-        ======================================== */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image:
-                radial-gradient(circle at 1px 1px, rgba(14, 165, 233, 0.03) 1px, transparent 0);
-            background-size: 40px 40px;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* ========================================
-           Navigation
-        ======================================== */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: var(--transition);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-
-        nav.scrolled {
-            background: rgba(250, 250, 249, 0.9);
-            border-bottom: 1px solid var(--border-light);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .nav-logo {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            color: var(--navy-deep);
-            text-decoration: none;
-            letter-spacing: -0.02em;
-        }
-
-        .nav-logo span {
-            color: var(--sky);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-light);
-            font-size: 0.875rem;
-            font-weight: 500;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--sky);
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover {
-            color: var(--navy);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* ========================================
-           Layout
-        ======================================== */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        section {
-            padding: 120px 0;
-            position: relative;
-        }
-
-        /* ========================================
-           Section Title System
-        ======================================== */
-        .section-header {
-            margin-bottom: 4rem;
-            position: relative;
-        }
-
-        .section-number {
-            font-family: var(--font-display);
-            font-size: 8rem;
-            color: var(--sky-light);
-            line-height: 1;
-            position: absolute;
-            top: -2rem;
-            left: -1rem;
-            z-index: 0;
-            user-select: none;
-        }
-
-        .section-label {
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: var(--sky);
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            margin-bottom: 0.75rem;
-            display: block;
-            position: relative;
-            z-index: 1;
-        }
-
-        .section-title {
-            font-family: var(--font-display);
-            font-size: 2.75rem;
-            color: var(--navy-deep);
-            line-height: 1.2;
-            position: relative;
-            z-index: 1;
-        }
-
-        .section-subtitle {
-            font-family: var(--font-jp);
-            font-size: 1.1rem;
-            color: var(--text-light);
-            margin-top: 1rem;
-            max-width: 600px;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* ========================================
-           Hero Section
-        ======================================== */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding-top: 80px;
-            background: linear-gradient(180deg, var(--bg) 0%, var(--bg-warm) 100%);
-            overflow: hidden;
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .hero-content {
-            position: relative;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--sky-glow);
-            border: 1px solid rgba(14, 165, 233, 0.2);
-            color: var(--sky);
-            padding: 0.5rem 1rem;
-            border-radius: 100px;
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 0.05em;
-            margin-bottom: 2rem;
-        }
-
-        .hero-badge .icon {
-            font-size: 0.65rem;
-        }
-
-        .hero-name-en {
-            font-family: var(--font-display);
-            font-size: 4rem;
-            color: var(--navy-deep);
-            line-height: 1.1;
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.02em;
-        }
-
-        .hero-name-jp {
-            font-family: var(--font-jp);
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--navy);
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-title {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-title-text {
-            font-family: var(--font-jp);
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: var(--text);
-        }
-
-        .hero-title img {
-            height: 2em;
-            width: auto;
-        }
-
-        .hero-mission {
-            font-family: var(--font-jp);
-            font-size: 1.15rem;
-            color: var(--text-light);
-            line-height: 1.8;
-            max-width: 520px;
-            margin-bottom: 2.5rem;
-            padding-left: 1.25rem;
-            border-left: 3px solid var(--sky);
-        }
-
-        .hero-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            background: var(--navy-deep);
-            color: white;
-            padding: 0.9rem 2rem;
-            border-radius: 100px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-        }
-
-        .hero-cta:hover {
-            background: var(--sky);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-glow);
-        }
-
-        .hero-image-wrapper {
-            position: relative;
-        }
-
-        .hero-image-wrapper::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            right: -20px;
-            width: 200px;
-            height: 200px;
-            border: 2px solid var(--sky-light);
-            border-radius: 24px;
-            z-index: 0;
-        }
-
-        .hero-image-wrapper::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: -15px;
-            width: 120px;
-            height: 120px;
-            background: var(--sky-glow);
-            border-radius: 20px;
-            z-index: 0;
-        }
-
-        .hero-image {
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-image img {
-            width: 100%;
-            max-width: 420px;
-            border-radius: 24px;
-            box-shadow: var(--shadow-lg);
-            display: block;
-        }
-
-        /* ========================================
-           Expertise Section
-        ======================================== */
-        .expertise-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-        }
-
-        .expertise-card {
-            display: flex;
-            gap: 1.25rem;
-            padding: 2rem;
-            border-radius: var(--radius);
-            background: var(--card);
-            border: 1px solid var(--border);
-            transition: var(--transition);
-        }
-
-        .expertise-card:hover {
-            box-shadow: var(--shadow-md);
-            border-color: var(--sky-light);
-        }
-
-        .expertise-icon {
-            flex-shrink: 0;
-            width: 48px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--navy-deep);
-            color: var(--sky);
-            border-radius: 12px;
-            font-size: 1.1rem;
-        }
-
-        .expertise-card h3 {
-            font-family: var(--font-jp);
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--navy-deep);
-            margin-bottom: 0.5rem;
-        }
-
-        .expertise-card p {
-            font-family: var(--font-jp);
-            font-size: 0.9rem;
-            color: var(--text-light);
-            line-height: 1.7;
-        }
-
-        /* ========================================
-           Certifications Section
-        ======================================== */
-        /* ========================================
-           Credential Strip（資格は帯。主役は実績）
-        ======================================== */
-        .cred-strip {
-            margin-top: 2rem;
-            padding: 1.25rem 1.75rem;
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            display: flex;
-            align-items: center;
-            gap: 1.75rem;
-            flex-wrap: wrap;
-        }
-
-        .cred-strip-label {
-            font-family: var(--font-body);
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: var(--sky);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            flex-shrink: 0;
-        }
-
-        .cred-strip-list {
-            list-style: none;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.6rem 1.75rem;
-            margin: 0;
-            padding: 0;
-        }
-
-        .cred-strip-list li {
-            font-family: var(--font-jp);
-            font-size: 0.95rem;
-            font-weight: 500;
-            color: var(--navy);
-            display: inline-flex;
-            align-items: center;
-        }
-
-        /* ========================================
-           Activities Section
-        ======================================== */
-        .activities-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-        }
-
-        .activity-card {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 3rem;
-            align-items: center;
-            padding: 2.5rem;
-            border-radius: var(--radius);
-            background: var(--card);
-            border: 1px solid var(--border);
-            transition: var(--transition);
-        }
-
-        .activity-card:hover {
-            box-shadow: var(--shadow-md);
-        }
-
-        .activity-card.reverse {
-            direction: rtl;
-        }
-
-        .activity-card.reverse > * {
-            direction: ltr;
-        }
-
-        .activity-image img {
-            width: 100%;
-            border-radius: 12px;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .activity-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            padding: 0.35rem 0.85rem;
-            border-radius: 100px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            font-family: var(--font-mono);
-            margin-bottom: 1rem;
-        }
-
-        .badge-blue {
-            background: var(--sky-glow);
-            color: var(--sky);
-            border: 1px solid rgba(14, 165, 233, 0.2);
-        }
-
-        .badge-amber {
-            background: var(--amber-light);
-            color: var(--amber);
-            border: 1px solid rgba(245, 158, 11, 0.2);
-        }
-
-        .badge-navy {
-            background: rgba(15, 23, 42, 0.06);
-            color: var(--navy);
-            border: 1px solid rgba(15, 23, 42, 0.1);
-        }
-
-        .activity-content h3 {
-            font-family: var(--font-jp);
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--navy-deep);
-            margin-bottom: 0.75rem;
-        }
-
-        .activity-content p {
-            font-family: var(--font-jp);
-            font-size: 0.95rem;
-            color: var(--text-light);
-            line-height: 1.8;
-        }
-
-        /* Activity without image */
-        .activity-card.no-image {
-            grid-template-columns: 1fr;
-        }
-
-        .activity-list {
-            list-style: none;
-            margin-top: 1rem;
-        }
-
-        .activity-list li {
-            font-family: var(--font-jp);
-            font-size: 0.95rem;
-            color: var(--text-light);
-            padding: 0.5rem 0;
-            padding-left: 1.25rem;
-            position: relative;
-        }
-
-        .activity-list li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            width: 6px;
-            height: 6px;
-            background: var(--sky);
-            border-radius: 50%;
-            transform: translateY(-50%);
-        }
-
-        /* ========================================
-           Contact / Footer
-        ======================================== */
-        .contact-section {
-            background: var(--navy-deep);
-            color: white;
-            text-align: center;
-            padding: 100px 0 60px;
-        }
-
-        .contact-section .section-label {
-            color: rgba(14, 165, 233, 0.8);
-        }
-
-        .contact-section .section-title {
-            color: white;
-        }
-
-        .contact-text {
-            font-family: var(--font-jp);
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.6);
-            max-width: 500px;
-            margin: 1.5rem auto 3rem;
-            line-height: 1.8;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.25rem;
-            flex-wrap: wrap;
-            margin-bottom: 4rem;
-        }
-
-        .contact-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            padding: 0.85rem 1.75rem;
-            border-radius: 100px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: white;
-        }
-
-        .contact-btn:hover {
-            border-color: var(--sky);
-            background: rgba(14, 165, 233, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .contact-btn.primary {
-            background: var(--sky);
-            border-color: var(--sky);
-        }
-
-        .contact-btn.primary:hover {
-            background: #0284c7;
-            box-shadow: 0 0 30px rgba(14, 165, 233, 0.3);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            padding-top: 2rem;
-            text-align: center;
-        }
-
-        .footer-copy {
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.35);
-            font-family: var(--font-mono);
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .footer-social a {
-            color: rgba(255, 255, 255, 0.35);
-            font-size: 1.1rem;
-            transition: var(--transition);
-        }
-
-        .footer-social a:hover {
-            color: var(--sky);
-        }
-
-        /* ========================================
-           Animations
-        ======================================== */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-                        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-        .reveal-delay-3 { transition-delay: 0.3s; }
-        .reveal-delay-4 { transition-delay: 0.4s; }
-
-        /* Hero entrance animations */
-        .hero-enter {
-            opacity: 0;
-            transform: translateY(40px);
-            animation: heroEnter 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        }
-
-        @keyframes heroEnter {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-enter-1 { animation-delay: 0.2s; }
-        .hero-enter-2 { animation-delay: 0.4s; }
-        .hero-enter-3 { animation-delay: 0.6s; }
-        .hero-enter-4 { animation-delay: 0.8s; }
-        .hero-enter-5 { animation-delay: 1.0s; }
-
-        /* ========================================
-           Mobile Navigation
-        ======================================== */
-        .nav-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.3rem;
-            color: var(--navy);
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        /* ========================================
-           Responsive
-        ======================================== */
-        @media (max-width: 968px) {
-            .nav-links {
-                display: none;
-            }
-
-            .nav-toggle {
-                display: block;
-            }
-
-            .nav-links.open {
-                display: flex;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                flex-direction: column;
-                background: rgba(250, 250, 249, 0.98);
-                backdrop-filter: blur(12px);
-                padding: 1rem 2rem 2rem;
-                gap: 1rem;
-                border-bottom: 1px solid var(--border);
-            }
-
-            .hero-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 3rem;
-            }
-
-            .hero-name-en {
-                font-size: 2.75rem;
-            }
-
-            .hero-mission {
-                margin: 0 auto 2.5rem;
-                text-align: left;
-            }
-
-            .hero-image-wrapper::before,
-            .hero-image-wrapper::after {
-                display: none;
-            }
-
-            .hero-image img {
-                max-width: 300px;
-                margin: 0 auto;
-            }
-
-            .expertise-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .cred-strip {
-                align-items: flex-start;
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .activity-card {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .activity-card.reverse {
-                direction: ltr;
-            }
-
-            .section-number {
-                font-size: 5rem;
-                top: -1rem;
-                left: -0.5rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            section {
-                padding: 80px 0;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                gap: 1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-name-en {
-                font-size: 2.2rem;
-            }
-
-            .container {
-                padding: 0 1.25rem;
-            }
-
-            .activity-card {
-                padding: 1.5rem;
-            }
-        }
-
-        /* ========================================
-           Gliders Learn 主役 Section
-        ======================================== */
-        #gliders-learn {
-            background: linear-gradient(180deg, var(--bg-warm) 0%, var(--bg) 100%);
-            border-top: 1px solid var(--border-light);
-            border-bottom: 1px solid var(--border-light);
-        }
-
-        /* 濃紺パネル。gliders.co.jp の Products セクションと同じ設計（背景写真 hero-learn + 横グラデ） */
-        .glearn-panel {
-            position: relative;
-            overflow: hidden;
-            background: #0f2440;
-            border-radius: var(--radius);
-            padding: 3.5rem 3rem;
-            box-shadow: var(--shadow-lg);
-        }
-        .glearn-panel::before {
-            content: '';
-            position: absolute; inset: 0;
-            background-image: url('assets/hero-learn.webp');
-            background-size: cover;
-            background-position: center 30%;
-            pointer-events: none;
-        }
-        .glearn-panel::after {
-            content: '';
-            position: absolute; inset: 0;
-            background:
-                linear-gradient(to right,
-                    rgba(15, 36, 64, 0.96) 0%, rgba(15, 36, 64, 0.9) 35%,
-                    rgba(15, 36, 64, 0.6) 60%, rgba(15, 36, 64, 0.3) 85%, rgba(15, 36, 64, 0.2) 100%),
-                linear-gradient(to bottom,
-                    rgba(15, 36, 64, 0.5) 0%, transparent 25%, transparent 75%, rgba(15, 36, 64, 0.7) 100%);
-            pointer-events: none;
-        }
-        .glearn-panel-inner { position: relative; z-index: 1; max-width: 600px; }
-        .glearn-badge {
-            display: inline-block;
-            padding: 0.35rem 1rem;
-            background: rgba(37, 99, 235, 0.2);
-            border: 1px solid rgba(96, 165, 250, 0.3);
-            border-radius: 100px;
-            font-family: var(--font-jp);
-            font-size: 0.8rem;
-            font-weight: 500;
-            letter-spacing: 0.05em;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 1.25rem;
-        }
-        .glearn-brand-text { display: flex; align-items: baseline; gap: 0.5rem; margin-bottom: 1rem; }
-        .glearn-logo { font-family: var(--font-body); font-size: 2.5rem; font-weight: 700; color: #fff; letter-spacing: -0.02em; }
-        .glearn-logo .dot { color: #60a5fa; }
-        .glearn-learn { font-family: var(--font-body); font-size: 1.4rem; font-weight: 600; color: #60a5fa; letter-spacing: 0.5px; }
-        .glearn-catch {
-            font-family: var(--font-jp);
-            font-size: 1.85rem;
-            font-weight: 700;
-            color: #fff;
-            line-height: 1.45;
-            margin-bottom: 1rem;
-        }
-        .glearn-catch .hl { color: #60a5fa; }
-        .glearn-lead {
-            font-family: var(--font-jp);
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.72);
-            line-height: 1.9;
-            margin-bottom: 1.5rem;
-        }
-        .glearn-lead strong { color: #fff; font-weight: 600; }
-        .glearn-features { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
-        .glearn-features span { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-jp); font-size: 0.85rem; color: #94a3b8; }
-        .glearn-features .icon { color: #60a5fa; }
-
-        .btn-primary-lg, .btn-outline-lg {
-            display: inline-flex; align-items: center; gap: 0.6rem;
-            padding: 0.9rem 2rem; border-radius: 100px; text-decoration: none;
-            font-weight: 600; font-size: 0.95rem; transition: var(--transition); cursor: pointer; border: 1px solid;
-        }
-        .btn-primary-lg { background: var(--sky); color: #fff; border-color: var(--sky); }
-        .btn-primary-lg:hover { background: #0284c7; transform: translateY(-2px); box-shadow: var(--shadow-glow); }
-        .btn-outline-lg { background: transparent; color: var(--navy); border-color: var(--border); }
-        .btn-outline-lg:hover { border-color: var(--sky); color: var(--sky); }
-
-        @media (max-width: 968px) {
-            .glearn-panel { padding: 2.5rem 1.5rem; }
-            .glearn-panel::after { background: rgba(15, 36, 64, 0.9); }
-            .glearn-catch { font-size: 1.6rem; }
-        }
-    </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   デザイン方針「静かな専門家」 = エディトリアル（ミニマル寄り）× スクロール出現 × マイクロインタラクション
+   明るい紙の上に、明朝の見出しと細い罫線。動きは「静かに現れる」「触ると少し応える」だけ。
+   ============================================================ */
+:root {
+  --paper: #f6f7f5;      /* わずかに緑みのある白。クリーム色は避ける */
+  --paper-2: #eceeeb;
+  --ink: #17202b;
+  --ink-2: #3c4654;
+  --muted: #6b7482;
+  --rule: #d6dad8;
+  --ai: #24457a;         /* 藍。アクセントはこの一色だけ */
+  --ai-soft: #e3e9f3;
+  --learn: #60a5fa;
+  --mincho: "Shippori Mincho B1", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --gothic: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", sans-serif;
+  --latin: "Cormorant Garamond", "Shippori Mincho B1", serif;
+  --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+img { max-width: 100%; height: auto; display: block; }
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; -webkit-font-smoothing: antialiased; }
+body { background: var(--paper); color: var(--ink); font-family: var(--gothic); line-height: 1.9; overflow-x: hidden; }
+.icon { width: 1em; height: 1em; fill: currentColor; vertical-align: -0.125em; flex-shrink: 0; }
+.container { max-width: 1160px; margin: 0 auto; padding-inline: 2rem; }
+:focus-visible { outline: 2px solid var(--ai); outline-offset: 3px; }
+h1, h2, h3 { font-family: var(--mincho); font-weight: 600; word-break: keep-all; overflow-wrap: anywhere; text-wrap: balance; }
+
+/* 下線が左から伸びるリンク（マイクロインタラクション） */
+.ul { color: var(--ai); text-decoration: none; background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat; transition: background-size 0.4s var(--ease); }
+.ul:hover { background-size: 0 1px; background-position: 100% 100%; }
+
+/* ボタン：矢印が少し進む */
+.btn { display: inline-flex; align-items: center; gap: 0.9rem; padding: 0.95rem 1.7rem; font-size: 0.95rem; font-weight: 500; text-decoration: none; border: 1px solid var(--ink); color: var(--ink); background: transparent; position: relative; overflow: hidden; isolation: isolate; transition: color 0.4s var(--ease); }
+.btn::before { content: ""; position: absolute; inset: 0; background: var(--ink); transform: scaleX(0); transform-origin: right; transition: transform 0.5s var(--ease); z-index: -1; }
+.btn:hover { color: var(--paper); }
+.btn:hover::before { transform: scaleX(1); transform-origin: left; }
+.btn .arrow { transition: transform 0.4s var(--ease); }
+.btn:hover .arrow { transform: translateX(4px); }
+.btn.solid { background: var(--ink); color: var(--paper); }
+.btn.solid::before { background: var(--ai); }
+
+/* ---------- ナビ ---------- */
+nav { position: fixed; inset: 0 0 auto; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.1rem 2rem; transition: background 0.4s, border-color 0.4s; border-bottom: 1px solid transparent; }
+nav.scrolled { background: rgba(246, 247, 245, 0.9); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom-color: var(--rule); }
+.nav-logo { font-family: var(--latin); font-weight: 600; font-size: 1.45rem; letter-spacing: 0.02em; color: var(--ink); text-decoration: none; }
+.nav-logo span { color: var(--ai); }
+.nav-links { display: flex; gap: 2.2rem; list-style: none; }
+.nav-links a { color: var(--ink-2); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.08em; background: linear-gradient(var(--ai), var(--ai)) 0 100% / 0 1px no-repeat; transition: background-size 0.4s var(--ease), color 0.2s; padding-bottom: 2px; }
+.nav-links a:hover { color: var(--ai); background-size: 100% 1px; }
+.nav-toggle { display: none; background: none; border: 0; color: var(--ink); font-size: 1.3rem; cursor: pointer; padding: 0.4rem; }
+
+/* ---------- ヒーロー ---------- */
+.hero { padding-block: 150px 100px; position: relative; }
+.hero-inner { display: grid; grid-template-columns: 1fr 380px; gap: 5rem; align-items: end; }
+.hero-kicker { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; display: flex; align-items: center; gap: 0.8rem; margin-bottom: 2.4rem; }
+.hero-kicker::before { content: ""; width: 2.5rem; height: 1px; background: var(--ink); transform-origin: left; animation: draw 1.2s var(--ease) 0.2s both; }
+.hero h1 { font-size: clamp(2.2rem, 4.8vw, 4rem); line-height: 1.45; letter-spacing: 0.04em; font-weight: 600; }
+/* 1行ずつ、下からせり上がる */
+.line { display: block; overflow: hidden; padding-bottom: 0.08em; }
+.line > span { display: inline-block; animation: rise 1.2s var(--ease) both; }
+.line:nth-child(2) > span { animation-delay: 0.15s; }
+.line:nth-child(3) > span { animation-delay: 0.3s; }
+.hero h1 em { font-style: normal; color: var(--ai); }
+.hero-lead { margin-top: 2.2rem; max-width: 32em; color: var(--ink-2); font-size: 1.02rem; animation: fade 1.2s var(--ease) 0.6s both; }
+.hero-cta { margin-top: 2.6rem; display: flex; gap: 1rem; flex-wrap: wrap; animation: fade 1.2s var(--ease) 0.8s both; }
+.hero-figure { animation: fade 1.4s var(--ease) 0.4s both; }
+.hero-figure .photo { position: relative; overflow: hidden; background: var(--paper-2); }
+.hero-figure img { width: 100%; aspect-ratio: 1 / 1; object-fit: contain; }
+.hero-figure figcaption { margin-top: 1rem; padding-top: 0.9rem; border-top: 1px solid var(--ink); display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+.hero-figure figcaption b { font-family: var(--mincho); font-size: 1.25rem; font-weight: 600; letter-spacing: 0.1em; }
+.hero-figure figcaption span { font-family: var(--latin); font-style: italic; color: var(--muted); font-size: 1.05rem; }
+.hero-figure figcaption small { flex-basis: 100%; color: var(--muted); font-size: 0.82rem; }
+.hero-vert { position: absolute; right: 1.2rem; top: 150px; writing-mode: vertical-rl; font-family: var(--mincho); font-size: 0.8rem; letter-spacing: 0.5em; color: var(--muted); }
+
+@keyframes rise { from { transform: translateY(105%); } to { transform: none; } }
+@keyframes fade { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* ---------- セクション ---------- */
+section { padding-block: 110px; }
+.sec { display: grid; grid-template-columns: 260px 1fr; gap: 4rem; align-items: start; }
+.sec-side { position: sticky; top: 110px; display: grid; gap: 0.8rem; }
+.sec-no { font-family: var(--mincho); font-size: 0.95rem; color: var(--ai); letter-spacing: 0.3em; }
+.sec-side h2 { font-size: 2rem; line-height: 1.4; letter-spacing: 0.06em; }
+.sec-side .en { font-family: var(--latin); font-style: italic; color: var(--muted); font-size: 1.1rem; }
+.sec-lead { font-family: var(--mincho); font-size: clamp(1.4rem, 2.4vw, 1.9rem); line-height: 1.7; letter-spacing: 0.04em; margin-bottom: 3rem; }
+
+/* スクロールで現れる。罫線は左から引かれる（JS が無いときは最初から見える） */
+.js .reveal { opacity: 0; transform: translateY(22px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
+.js .reveal.visible { opacity: 1; transform: none; }
+.reveal.r1 { transition-delay: 0.1s; } .reveal.r2 { transition-delay: 0.2s; } .reveal.r3 { transition-delay: 0.3s; }
+.rule { height: 1px; background: var(--ink); transform-origin: left; }
+.js .rule { transform: scaleX(0); transition: transform 1.4s var(--ease); }
+.js .rule.visible { transform: scaleX(1); }
+
+/* 01 監修者：罫線で区切った一覧 */
+.items { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 3rem; }
+.item { padding-block: 2rem; border-top: 1px solid var(--rule); display: grid; gap: 0.7rem; align-content: start; }
+.item-head { display: flex; align-items: center; gap: 0.8rem; }
+.item-head .icon { color: var(--ai); font-size: 1.05rem; }
+.item h3 { font-size: 1.2rem; letter-spacing: 0.05em; }
+.item p { color: var(--ink-2); font-size: 0.93rem; }
+.creds { margin-top: 3rem; }
+.creds h3 { font-size: 1.1rem; letter-spacing: 0.1em; display: flex; gap: 0.8rem; align-items: center; margin-bottom: 0.4rem; }
+.creds h3 .icon { color: var(--ai); }
+.creds table { width: 100%; border-collapse: collapse; }
+.creds th, .creds td { text-align: left; padding: 1rem 0; border-bottom: 1px solid var(--rule); font-weight: 400; vertical-align: baseline; }
+.creds th { width: 7rem; font-family: var(--latin); font-size: 1.25rem; color: var(--ai); font-variant-numeric: lining-nums tabular-nums; }
+.creds td { font-family: var(--mincho); font-size: 1.1rem; font-weight: 600; letter-spacing: 0.05em; }
+
+/* 02 発信・実績 */
+.work { display: grid; grid-template-columns: 280px 1fr; gap: 2.4rem; align-items: center; padding-bottom: 2.6rem; }
+.work .thumb { overflow: hidden; border: 1px solid var(--rule); }
+.work .thumb img { width: 100%; aspect-ratio: 750 / 422; object-fit: cover; transition: transform 1s var(--ease); }
+.work:hover .thumb img { transform: scale(1.04); }
+.label { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.18em; color: var(--ai); text-transform: uppercase; }
+.work h3 { font-size: 1.35rem; margin-block: 0.4rem 0.6rem; letter-spacing: 0.04em; }
+.work p { color: var(--ink-2); font-size: 0.95rem; }
+.figures { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--ink); }
+.figure { padding: 2.2rem 2rem 2.2rem 0; display: grid; gap: 0.4rem; }
+.figure + .figure { border-left: 1px solid var(--rule); padding-left: 2rem; }
+.figure .num { font-family: var(--latin); font-size: clamp(2.6rem, 4.4vw, 3.8rem); font-weight: 500; line-height: 1; font-variant-numeric: lining-nums tabular-nums; letter-spacing: -0.01em; white-space: nowrap; }
+.figure .num small { font-family: var(--mincho); font-size: 1.05rem; font-weight: 600; margin-left: 0.4rem; color: var(--ink-2); }
+.figure p { color: var(--ink-2); font-size: 0.92rem; }
+.links { list-style: none; border-top: 1px solid var(--rule); }
+.links a { display: flex; justify-content: space-between; align-items: center; padding: 1.15rem 0; border-bottom: 1px solid var(--rule); color: var(--ink); text-decoration: none; transition: padding 0.4s var(--ease), color 0.2s; }
+.links a .arrow { color: var(--muted); transition: transform 0.4s var(--ease), color 0.2s; }
+.links a:hover { color: var(--ai); padding-left: 0.6rem; }
+.links a:hover .arrow { color: var(--ai); transform: translateX(6px); }
+
+/* 03 Gliders Learn：紙のページに差し込まれた一枚の写真ページ */
+.learn { position: relative; overflow: hidden; background: #0f2440; color: #fff; padding: 4rem 3.5rem; }
+.learn::before { content: ""; position: absolute; inset: 0; background: url("assets/hero-learn.webp") center 30% / cover; }
+.learn::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(15,36,64,0.96) 0%, rgba(15,36,64,0.9) 40%, rgba(15,36,64,0.5) 75%, rgba(15,36,64,0.25) 100%); }
+.learn-body { position: relative; z-index: 1; max-width: 560px; display: grid; gap: 1.2rem; justify-items: start; }
+.learn .label { color: #9cc3ff; }
+.learn-brand { font-family: "Zen Kaku Gothic New", sans-serif; font-weight: 700; font-size: 2.3rem; letter-spacing: -0.01em; line-height: 1; }
+.learn-brand .dot { color: var(--learn); }
+.learn-brand em { font-style: normal; font-size: 1.3rem; color: var(--learn); margin-left: 0.4rem; }
+.learn-catch { font-family: var(--mincho); font-size: clamp(1.5rem, 2.6vw, 2rem); font-weight: 600; line-height: 1.6; }
+.learn-catch .hl { color: #9cc3ff; }
+.learn-lead { color: rgba(255,255,255,0.78); font-size: 0.95rem; }
+.learn-lead strong { color: #fff; }
+.learn-feats { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem 1.6rem; font-size: 0.85rem; color: #c6d3e6; }
+.learn-feats .icon { color: var(--learn); margin-right: 0.4rem; }
+.learn .btn { border-color: #fff; color: #fff; }
+.learn .btn::before { background: #fff; }
+.learn .btn:hover { color: #0f2440; }
+
+/* Contact */
+.contact { background: var(--paper-2); padding-block: 120px 50px; }
+.contact-inner { display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: end; }
+.contact h2 { font-size: clamp(2.4rem, 5.5vw, 4.4rem); line-height: 1.3; letter-spacing: 0.06em; }
+.contact .en { font-family: var(--latin); font-style: italic; color: var(--muted); font-size: 1.3rem; display: block; margin-bottom: 1rem; }
+.contact p { margin-top: 1.6rem; color: var(--ink-2); max-width: 30em; }
+.contact-links { display: grid; gap: 0.8rem; min-width: 260px; }
+.contact-links .btn { justify-content: space-between; }
+.footer-bottom { margin-top: 5rem; padding-top: 1.6rem; border-top: 1px solid var(--rule); font-size: 0.78rem; color: var(--muted); font-family: var(--mono); }
+
+/* ---------- レスポンシブ ---------- */
+@media (max-width: 968px) {
+  nav { padding: 0.9rem 1.25rem; }
+  .nav-toggle { display: block; }
+  .nav-links { display: none; }
+  .nav-links.open { display: flex; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 1.1rem; padding: 1.2rem 1.5rem 1.6rem; background: rgba(246,247,245,0.98); border-bottom: 1px solid var(--rule); }
+  .hero { padding-block: 120px 70px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 3.5rem; }
+  .hero-figure { max-width: 340px; }
+  .hero-vert { display: none; }
+  .sec { grid-template-columns: 1fr; gap: 2rem; }
+  .sec-side { position: static; }
+  .items { grid-template-columns: 1fr; }
+  .work { grid-template-columns: 1fr; gap: 1.4rem; }
+  .work .thumb { max-width: 340px; }
+  .figures { grid-template-columns: 1fr; }
+  .figure, .figure + .figure { padding: 1.8rem 0; border-left: 0; }
+  .figure + .figure { border-top: 1px solid var(--rule); }
+  .learn { padding: 2.6rem 1.5rem; }
+  .learn::after { background: rgba(15,36,64,0.9); }
+  .contact-inner { grid-template-columns: 1fr; }
+  section { padding-block: 80px; }
+}
+@media (max-width: 480px) {
+  .container { padding-inline: 1.25rem; }
+  .creds th { width: 5.5rem; font-size: 1.1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  .js .reveal { opacity: 1; transform: none; }
+  .js .rule { transform: none; }
+}
+</style>
 </head>
-
 <body>
 
-    <!-- アイコン: Font Awesome Free 6.5.0 (CC BY 4.0) https://fontawesome.com/license/free
-         使用している分だけを <symbol> にして埋め込んでいる。CDN の CSS 読み込みを 1 本減らすため。 -->
-    <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
       <symbol id="i-bars" viewBox="0 0 448 512"><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></symbol>
       <symbol id="i-shield-halved" viewBox="0 0 512 512"><path d="M256 0c4.6 0 9.2 1 13.4 2.9L457.7 82.8c22 9.3 38.4 31 38.3 57.2c-.5 99.2-41.3 280.7-213.6 363.2c-16.7 8-36.1 8-52.8 0C57.3 420.7 16.5 239.2 16 140c-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.8 1 251.4 0 256 0zm0 66.8V444.8C394 378 431.1 230.1 432 141.4L256 66.8l0 0z"/></symbol>
       <symbol id="i-building-shield" viewBox="0 0 576 512"><path d="M0 48C0 21.5 21.5 0 48 0H336c26.5 0 48 21.5 48 48V207l-42.4 17H304 272c-8.8 0-16 7.2-16 16v32 24.2V304c0 .9 .1 1.7 .2 2.6c2.3 58.1 24.1 144.8 98.7 201.5c-5.8 2.5-12.2 3.9-18.9 3.9H240V432c0-26.5-21.5-48-48-48s-48 21.5-48 48v80H48c-26.5 0-48-21.5-48-48V48zM80 224c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V240c0-8.8-7.2-16-16-16H80zm80 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V240c0-8.8-7.2-16-16-16H176c-8.8 0-16 7.2-16 16zM64 112v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V112c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zM176 96c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V112c0-8.8-7.2-16-16-16H176zm80 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V112c0-8.8-7.2-16-16-16H272c-8.8 0-16 7.2-16 16zM423.1 225.7c5.7-2.3 12.1-2.3 17.8 0l120 48C570 277.4 576 286.2 576 296c0 63.3-25.9 168.8-134.8 214.2c-5.9 2.5-12.6 2.5-18.5 0C313.9 464.8 288 359.3 288 296c0-9.8 6-18.6 15.1-22.3l120-48zM527.4 312L432 273.8V461.7c68.2-33 91.5-99 95.4-149.7z"/></symbol>
@@ -1014,225 +264,170 @@
       <symbol id="i-github" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></symbol>
     </svg>
 
-    <!-- Navigation -->
-    <nav id="navbar">
-        <a href="#" class="nav-logo">S<span>.</span>Matsui</a>
-        <button class="nav-toggle" aria-label="メニュー" onclick="document.querySelector('.nav-links').classList.toggle('open')">
-            <svg class="icon" aria-hidden="true"><use href="#i-bars"></use></svg>
-        </button>
-        <ul class="nav-links">
-            <li><a href="#expertise">監修者</a></li>
-            <li><a href="#activities">発信・実績</a></li>
-            <li><a href="#gliders-learn">法人研修</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+<nav id="navbar">
+  <a href="#" class="nav-logo">S<span>.</span>Matsui</a>
+  <button class="nav-toggle" type="button" aria-label="メニュー" aria-expanded="false" id="navToggle"><svg class="icon" aria-hidden="true"><use href="#i-bars"></use></svg></button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#expertise">監修者</a></li>
+    <li><a href="#activities">発信・実績</a></li>
+    <li><a href="#gliders-learn">法人研修</a></li>
+    <li><a href="#contact">お問い合わせ</a></li>
+  </ul>
+</nav>
 
-    <main>
-
-        <!-- ======== Hero Section ======== -->
-        <section class="hero">
-            <div class="container">
-                <div class="hero-grid">
-                    <div class="hero-content">
-                        <div class="hero-badge hero-enter hero-enter-1">
-                            <svg class="icon" aria-hidden="true"><use href="#i-shield-halved"></use></svg>
-                            Udemy Business 採用講師 ／ RISS
-                        </div>
-                        <h1 class="hero-name-en hero-enter hero-enter-2">
-                            Shinya<br>Matsui.
-                        </h1>
-                        <p class="hero-name-jp hero-enter hero-enter-3">松井 真也</p>
-                        <div class="hero-title hero-enter hero-enter-3">
-                            <span class="hero-title-text">情報処理安全確保支援士（RISS）</span>
-                        </div>
-                        <p class="hero-mission hero-enter hero-enter-4">
-                            情報セキュリティ教育を専門に、<br>監査で使える「証拠」まで残せる法人向け研修を監修・提供しています。
-                        </p>
-                        <div class="hero-enter hero-enter-5" style="display:flex; gap:1rem; flex-wrap:wrap;">
-                            <a href="#gliders-learn" class="hero-cta">
-                                <svg class="icon" aria-hidden="true"><use href="#i-building-shield"></use></svg>
-                                法人研修を見る
-                            </a>
-                            <a href="#contact" class="btn-outline-lg">
-                                <svg class="icon" aria-hidden="true"><use href="#i-envelope"></use></svg>
-                                お問い合わせ
-                            </a>
-                        </div>
-                    </div>
-                    <div class="hero-image-wrapper hero-enter hero-enter-4">
-                        <div class="hero-image">
-                            <img src="assets/profile.webp" width="840" height="840" fetchpriority="high" decoding="async" alt="松井真也（Shinya Matsui）- 情報処理安全確保支援士・Udemy講師・Gliders Learn開発者">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ======== Expertise Section ======== -->
-        <section id="expertise">
-            <div class="container">
-                <div class="section-header reveal">
-                    <span class="section-number">01</span>
-                    <span class="section-label">// Supervisor</span>
-                    <h2 class="section-title">The Supervisor</h2>
-                    <p class="section-subtitle">全社員のセキュリティ研修を、安心して任せられる理由。</p>
-                </div>
-
-                <div class="expertise-grid">
-                    <div class="expertise-card reveal reveal-delay-1">
-                        <div class="expertise-icon">
-                            <svg class="icon" aria-hidden="true"><use href="#i-shield-halved"></use></svg>
-                        </div>
-                        <div>
-                            <h3>サイバーセキュリティ</h3>
-                            <p>情報処理安全確保支援士としての知見を、情報セキュリティ教育に一点集中で注いでいます。IPA10大脅威など実際に組織を襲う脅威を、教材の骨格に据えています。</p>
-                        </div>
-                    </div>
-                    <div class="expertise-card reveal reveal-delay-2">
-                        <div class="expertise-icon">
-                            <svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg>
-                        </div>
-                        <div>
-                            <h3>グローバル対応</h3>
-                            <p>国際的な異文化環境での実務遂行。国際機関への出向経験を活かした、グローバル視点でのセキュリティ推進。</p>
-                        </div>
-                    </div>
-                    <div class="expertise-card reveal reveal-delay-3">
-                        <div class="expertise-icon">
-                            <svg class="icon" aria-hidden="true"><use href="#i-chalkboard-user"></use></svg>
-                        </div>
-                        <div>
-                            <h3>法人研修の実績</h3>
-                            <p>Udemy Business（法人向け研修）に採用されたランサムウェア対策講座を運営。法人研修の現場で磨いた教材設計で Gliders Learn の全コンテンツを監修しています。</p>
-                        </div>
-                    </div>
-                    <div class="expertise-card reveal reveal-delay-4">
-                        <div class="expertise-icon">
-                            <svg class="icon" aria-hidden="true"><use href="#i-briefcase"></use></svg>
-                        </div>
-                        <div>
-                            <h3>ドメイン知識</h3>
-                            <p>人事、知的財産管理など、多様なビジネス領域での知見。幅広い業務経験に基づく実践的なアドバイスを提供します。</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="cred-strip reveal">
-                    <span class="cred-strip-label">
-                        <svg class="icon" style="font-size: 0.9em;" aria-hidden="true"><use href="#i-microchip"></use></svg>
-                        保有資格
-                    </span>
-                    <ul class="cred-strip-list">
-                        <li>情報処理安全確保支援士</li>
-                        <li>応用情報技術者</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- ======== Outreach / 発信・実績 Section ======== -->
-        <section id="activities">
-            <div class="container">
-                <div class="section-header reveal">
-                    <span class="section-number">02</span>
-                    <span class="section-label">// Outreach</span>
-                    <h2 class="section-title">発信・実績</h2>
-                    <p class="section-subtitle">専門知識を社会に還元しつづけています。</p>
-                </div>
-
-                <div class="activities-grid">
-                    <!-- Udemy Business -->
-                    <div class="activity-card reveal">
-                        <div class="activity-image">
-                            <img src="assets/udemy_course.webp" width="750" height="422" loading="lazy" decoding="async" alt="Udemy Business 採用のランサムウェア対策コース - 松井真也">
-                        </div>
-                        <div class="activity-content">
-                            <span class="activity-badge badge-blue"><svg class="icon" aria-hidden="true"><use href="#i-graduation-cap"></use></svg> Udemy Business</span>
-                            <h3>法人研修に採用された講座</h3>
-                            <p>「ランサムウェア対策」コースが <a href="https://www.udemy.com/user/song-jing-zhen-ye/" target="_blank" rel="noopener" style="color: var(--sky); text-decoration: underline; text-underline-offset: 3px;">Udemy Business</a>（法人向け研修）に採用。AIロールプレイ等を取り入れた体験型教材で、多くの企業の社員研修に活用されています。</p>
-                        </div>
-                    </div>
-
-                    <!-- Information Sharing & Community -->
-                    <div class="activity-card no-image reveal">
-                        <div class="activity-content">
-                            <span class="activity-badge badge-navy"><svg class="icon" aria-hidden="true"><use href="#i-bullhorn"></use></svg> Outreach</span>
-                            <h3>情報発信・コミュニティ</h3>
-                            <p>セキュリティの専門知識を、幅広い形で発信しています。</p>
-                            <ul class="activity-list">
-                                <li><a href="https://note.com/shinya_matsui" target="_blank" rel="noopener" style="color: var(--sky); text-decoration: underline; text-underline-offset: 3px;">note</a> でセキュリティ基礎知識を継続発信（1,600本超のアーカイブ）</li>
-                                <li><a href="https://www.linkedin.com/in/%E7%9C%9F%E4%B9%9F-%E6%9D%BE%E4%BA%95-77293956/" target="_blank" rel="noopener" style="color: var(--sky); text-decoration: underline; text-underline-offset: 3px;">LinkedIn</a> でセキュリティ専門家とのネットワーク（2,000名超）</li>
-                                <li><a href="http://www.youtube.com/@liberwork" target="_blank" rel="noopener" style="color: var(--sky); text-decoration: underline; text-underline-offset: 3px;">YouTube</a> でテクノロジー・ツール解説</li>
-                                <li><a href="https://securityagent.jp/cont/cat-info/1759/" target="_blank" rel="noopener" style="color: var(--sky); text-decoration: underline; text-underline-offset: 3px;">セキュリティ専門家交流会</a>等での登壇</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ======== ⭐ Gliders Learn 主役 Section ======== -->
-        <section id="gliders-learn">
-            <div class="container">
-                <div class="section-header reveal">
-                    <span class="section-number">03</span>
-                    <span class="section-label">// Gliders Learn</span>
-                    <h2 class="section-title">Gliders Learn</h2>
-                    <p class="section-subtitle">松井真也が監修する、法人向けサイバーセキュリティ研修サブスク。</p>
-                </div>
-
-                <div class="glearn-panel reveal">
-                    <div class="glearn-panel-inner">
-                        <span class="glearn-badge">法人向け セキュリティ研修プラットフォーム</span>
-                        <div class="glearn-brand-text"><span class="glearn-logo">Gliders<span class="dot">.</span></span><span class="glearn-learn">Learn</span></div>
-                        <p class="glearn-catch">情報セキュリティ研修が、<br><span class="hl">監査で使える証拠</span>に。</p>
-                        <p class="glearn-lead">
-                            Pマーク・ISMS 監査で求められる「全社員研修実施の証跡」を、月額サブスクで。
-                            受講して終わりではなく、<strong>個人修了証</strong>と<strong>組織修了証明書</strong>をセットで発行し、研修を「やった証拠」まで残せます。
-                        </p>
-                        <div class="glearn-features">
-                            <span><svg class="icon" aria-hidden="true"><use href="#i-shield-halved"></use></svg> RISS 監修</span>
-                            <span><svg class="icon" aria-hidden="true"><use href="#i-building-shield"></use></svg> 法人向けサブスクリプション</span>
-                            <span><svg class="icon" aria-hidden="true"><use href="#i-clipboard-check"></use></svg> 修了証発行・監査対応</span>
-                        </div>
-                        <a href="https://learn.gliders.co.jp/?utm_source=smats" target="_blank" rel="noopener" class="btn-primary-lg">
-                            <svg class="icon" aria-hidden="true"><use href="#i-building-shield"></use></svg> Gliders Learn のサイトを見る
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- ======== Contact / Footer ======== -->
-    <footer class="contact-section" id="contact">
-        <div class="container">
-            <div class="section-header reveal" style="text-align: center;">
-                <span class="section-label">// Contact</span>
-                <h2 class="section-title" style="color: white;">Get in Touch</h2>
-            </div>
-            <p class="contact-text reveal">
-                法人研修の導入相談、取材・登壇のご依頼などは、<br>
-                下記よりお気軽にご連絡ください。
-            </p>
-            <div class="contact-links reveal">
-                <a href="mailto:info@gliders.co.jp" class="contact-btn primary">
-                    <svg class="icon" aria-hidden="true"><use href="#i-envelope"></use></svg> Email
-                </a>
-                <a href="https://www.linkedin.com/in/%E7%9C%9F%E4%B9%9F-%E6%9D%BE%E4%BA%95-77293956/" target="_blank" rel="noopener" class="contact-btn">
-                    <svg class="icon" aria-hidden="true"><use href="#i-linkedin"></use></svg> LinkedIn
-                </a>
-                <a href="https://github.com/Shinya-Matsui" target="_blank" rel="noopener" class="contact-btn">
-                    <svg class="icon" aria-hidden="true"><use href="#i-github"></use></svg> GitHub
-                </a>
-            </div>
-            <div class="footer-bottom">
-                <span class="footer-copy">&copy; 2026 Shinya Matsui / Gliders LLC</span>
-            </div>
+<main>
+  <!-- ======== Hero ======== -->
+  <section class="hero">
+    <span class="hero-vert" aria-hidden="true">情報セキュリティ教育</span>
+    <div class="container hero-inner">
+      <div>
+        <p class="hero-kicker">Udemy Business 採用講師 ／ RISS</p>
+        <h1>
+          <span class="line"><span>情報セキュリティ<wbr>研修を、</span></span>
+          <span class="line"><span>監査で使える</span></span>
+          <span class="line"><span><em>「証拠」</em>まで。</span></span>
+        </h1>
+        <p class="hero-lead">情報処理安全確保支援士として、情報セキュリティ教育を専門に、監査で使える「証拠」まで残せる法人向け研修を監修・提供しています。</p>
+        <div class="hero-cta">
+          <a href="#gliders-learn" class="btn solid">法人研修を見る<span class="arrow">→</span></a>
+          <a href="#contact" class="btn">お問い合わせ<span class="arrow">→</span></a>
         </div>
-    </footer>
+      </div>
+      <figure class="hero-figure">
+        <div class="photo"><img src="assets/profile.webp" width="840" height="840" fetchpriority="high" decoding="async" alt="松井真也（Shinya Matsui）- 情報処理安全確保支援士・Udemy講師・Gliders Learn監修者"></div>
+        <figcaption><b>松井 真也</b><span>Shinya Matsui</span><small>情報処理安全確保支援士（RISS）</small></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ======== 一 監修者 ======== -->
+  <section id="expertise">
+    <div class="container sec">
+      <div class="sec-side reveal">
+        <span class="sec-no">一</span>
+        <h2>監修者</h2>
+        <span class="en">The Supervisor</span>
+      </div>
+      <div>
+        <p class="sec-lead reveal">全社員のセキュリティ研修を、<br>安心して任せられる理由。</p>
+        <div class="items">
+          <article class="item reveal">
+            <div class="item-head"><svg class="icon" aria-hidden="true"><use href="#i-shield-halved"></use></svg><h3>サイバーセキュリティ</h3></div>
+            <p>情報処理安全確保支援士としての知見を、情報セキュリティ教育に一点集中で注いでいます。IPA10大脅威など実際に組織を襲う脅威を、教材の骨格に据えています。</p>
+          </article>
+          <article class="item reveal r1">
+            <div class="item-head"><svg class="icon" aria-hidden="true"><use href="#i-chalkboard-user"></use></svg><h3>法人研修の実績</h3></div>
+            <p>Udemy Business（法人向け研修）に採用されたランサムウェア対策講座を運営。法人研修の現場で磨いた教材設計で Gliders Learn の全コンテンツを監修しています。</p>
+          </article>
+          <article class="item reveal">
+            <div class="item-head"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg><h3>グローバル対応</h3></div>
+            <p>国際的な異文化環境での実務遂行。国際機関への出向経験を活かした、グローバル視点でのセキュリティ推進。</p>
+          </article>
+          <article class="item reveal r1">
+            <div class="item-head"><svg class="icon" aria-hidden="true"><use href="#i-briefcase"></use></svg><h3>ドメイン知識</h3></div>
+            <p>人事、知的財産管理など、多様なビジネス領域での知見。幅広い業務経験に基づく実践的なアドバイスを提供します。</p>
+          </article>
+        </div>
+        <div class="creds reveal">
+          <h3><svg class="icon" aria-hidden="true"><use href="#i-microchip"></use></svg>保有資格</h3>
+          <div class="rule reveal"></div>
+          <table>
+            <tr><th scope="row">2024〜</th><td>情報処理安全確保支援士</td></tr>
+            <tr><th scope="row">2023</th><td>応用情報技術者</td></tr>
+            <tr><th scope="row">2024</th><td>TOEIC 945点</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== 二 発信・実績 ======== -->
+  <section id="activities">
+    <div class="container sec">
+      <div class="sec-side reveal">
+        <span class="sec-no">二</span>
+        <h2>発信・実績</h2>
+        <span class="en">Outreach</span>
+      </div>
+      <div>
+        <p class="sec-lead reveal">専門知識を、社会に還元しつづけています。</p>
+        <article class="work reveal">
+          <div class="thumb"><img src="assets/udemy_course.webp" width="750" height="422" loading="lazy" decoding="async" alt="Udemy Business 採用のランサムウェア対策コース - 松井真也"></div>
+          <div>
+            <span class="label">Udemy Business</span>
+            <h3>法人研修に採用された講座</h3>
+            <p>「ランサムウェア対策」コースが <a class="ul" href="https://www.udemy.com/user/song-jing-zhen-ye/" target="_blank" rel="noopener">Udemy Business</a>（法人向け研修）に採用。AIロールプレイ等を取り入れた体験型教材で、多くの企業の社員研修に活用されています。</p>
+          </div>
+        </article>
+        <div class="rule reveal"></div>
+        <div class="figures">
+          <div class="figure reveal">
+            <span class="num" data-count="3200">3,200<small>人超</small></span>
+            <p><a class="ul" href="https://www.udemy.com/user/song-jing-zhen-ye/" target="_blank" rel="noopener">Udemy</a> の講座で学んだ、総学習者数</p>
+          </div>
+          <div class="figure reveal r1">
+            <span class="num" data-count="1600">1,600<small>本超</small></span>
+            <p><a class="ul" href="https://note.com/shinya_matsui" target="_blank" rel="noopener">note</a> で継続発信している、セキュリティ基礎知識のアーカイブ</p>
+          </div>
+          <div class="figure reveal r2">
+            <span class="num" data-count="2000">2,000<small>名超</small></span>
+            <p><a class="ul" href="https://www.linkedin.com/in/%E7%9C%9F%E4%B9%9F-%E6%9D%BE%E4%BA%95-77293956/" target="_blank" rel="noopener">LinkedIn</a> でつながる、セキュリティ専門家のネットワーク</p>
+          </div>
+        </div>
+        <ul class="links reveal">
+          <li><a href="http://www.youtube.com/@liberwork" target="_blank" rel="noopener">YouTube でテクノロジー・ツール解説<span class="arrow">→</span></a></li>
+          <li><a href="https://securityagent.jp/cont/cat-info/1759/" target="_blank" rel="noopener">セキュリティ専門家交流会等での登壇<span class="arrow">→</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== 三 Gliders Learn ======== -->
+  <section id="gliders-learn">
+    <div class="container sec">
+      <div class="sec-side reveal">
+        <span class="sec-no">三</span>
+        <h2>法人研修</h2>
+        <span class="en">Gliders Learn</span>
+      </div>
+      <div>
+        <p class="sec-lead reveal">松井真也が監修する、<br>法人向けサイバーセキュリティ研修サブスク。</p>
+        <div class="learn reveal">
+          <div class="learn-body">
+            <span class="label">法人向け セキュリティ研修プラットフォーム</span>
+            <div class="learn-brand">Gliders<span class="dot">.</span><em>Learn</em></div>
+            <p class="learn-catch">情報セキュリティ研修が、<br><span class="hl">監査で使える証拠</span>に。</p>
+            <p class="learn-lead">Pマーク・ISMS 監査で求められる「全社員研修実施の証跡」を、月額サブスクで。受講して終わりではなく、<strong>個人修了証</strong>と<strong>組織修了証明書</strong>をセットで発行し、研修を「やった証拠」まで残せます。</p>
+            <ul class="learn-feats">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-shield-halved"></use></svg>RISS 監修</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-building-shield"></use></svg>法人向けサブスクリプション</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-clipboard-check"></use></svg>修了証発行・監査対応</li>
+            </ul>
+            <a href="https://learn.gliders.co.jp/?utm_source=smats" target="_blank" rel="noopener" class="btn">Gliders Learn のサイトを見る<span class="arrow">→</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="contact" id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="reveal">
+        <span class="en">Get in Touch</span>
+        <h2>お問い合わせ</h2>
+        <p>法人研修の導入相談、取材・登壇のご依頼などは、下記よりお気軽にご連絡ください。</p>
+      </div>
+      <div class="contact-links reveal r1">
+        <a href="mailto:info@gliders.co.jp" class="btn solid"><span><svg class="icon" aria-hidden="true"><use href="#i-envelope"></use></svg>&nbsp; Email</span><span class="arrow">→</span></a>
+        <a href="https://www.linkedin.com/in/%E7%9C%9F%E4%B9%9F-%E6%9D%BE%E4%BA%95-77293956/" target="_blank" rel="noopener" class="btn"><span><svg class="icon" aria-hidden="true"><use href="#i-linkedin"></use></svg>&nbsp; LinkedIn</span><span class="arrow">→</span></a>
+        <a href="https://github.com/Shinya-Matsui" target="_blank" rel="noopener" class="btn"><span><svg class="icon" aria-hidden="true"><use href="#i-github"></use></svg>&nbsp; GitHub</span><span class="arrow">→</span></a>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2026 Shinya Matsui / Gliders LLC</div>
+  </div>
+</footer>
 
     <!-- Structured Data (JSON-LD) -->
     <!--
@@ -1254,7 +449,7 @@
                 "inLanguage": "ja",
                 "mainEntity": { "@id": "https://smats.jp/#person" },
                 "about": { "@id": "https://learn.gliders.co.jp/#service" },
-                "dateModified": "2026-08-13T00:00:00+09:00"
+                "dateModified": "2026-09-27T00:00:00+09:00"
             },
             {
                 "@type": "Person",
@@ -1430,36 +625,31 @@
     }
     </script>
 
-    <!-- JavaScript -->
-    <script>
-        // Scroll-triggered reveal animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -40px 0px'
-        });
+<script>
+(() => {
+  document.documentElement.classList.add('js');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const nav = document.getElementById('navbar');
+  const onScroll = () => nav.classList.toggle('scrolled', scrollY > 40);
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  const toggle = document.getElementById('navToggle'), links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => { const o = links.classList.toggle('open'); toggle.setAttribute('aria-expanded', o); });
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { links.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); }));
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // Navbar scroll effect
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            navbar.classList.toggle('scrolled', window.scrollY > 60);
-        });
-
-        // Close mobile menu on link click
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.querySelector('.nav-links').classList.remove('open');
-            });
-        });
-
-    </script>
-
+  const countUp = el => {
+    const target = +el.dataset.count, unit = el.querySelector('small').outerHTML, t0 = performance.now(), dur = 1600;
+    const step = now => { const p = Math.min(1, (now - t0) / dur), v = Math.round(target * (1 - Math.pow(1 - p, 3)));
+      el.innerHTML = v.toLocaleString('ja-JP') + unit; if (p < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  };
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('visible');
+    if (!reduce) e.target.querySelectorAll('[data-count]').forEach(countUp);
+    io.unobserve(e.target);
+  }), { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+})();
+</script>
 </body>
 </html>
